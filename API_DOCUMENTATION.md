@@ -4,7 +4,7 @@
 
 ```
 Development: http://localhost:3000/api
-Production: https://api.pualin-zefi.com/api
+Production: https://api.paulin-zefi.com/api
 ```
 
 ---

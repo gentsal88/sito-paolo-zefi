@@ -1,5 +1,5 @@
 /* =========================================
-   PUALIN ZEFI · Main JavaScript
+    PAULIN ZEFI · Main JavaScript
    GSAP · ScrollTrigger · Three.js · Vanilla JS
    ========================================= */
 

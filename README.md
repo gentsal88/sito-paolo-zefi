@@ -1,8 +1,8 @@
-# Pualin Zefi · Sito Storico Cinematografico
+# Paulin Zefi · Sito Storico Cinematografico
 
-Sito web premium dedicato a **Pualin Zefi**, storico, ricercatore e custode della memoria di Lezha. Una celebrazione cinematografica della storia albanese, di Gjergj Kastrioti Skanderbeg, della Lega di Alessio e del Castello di Lezha.
+Sito web premium dedicato a **Paulin Zefi**, storico, ricercatore e custode della memoria di Lezha. Una celebrazione cinematografica della storia albanese, di Gjergj Kastrioti Skanderbeg, della Lega di Alessio e del Castello di Lezha.
 
-> *"La storia non è polvere — è fuoco"* — Pualin Zefi
+> *"La storia non è polvere — è fuoco"* — Paulin Zefi
 
 ---
 
@@ -22,7 +22,7 @@ Sito web premium dedicato a **Pualin Zefi**, storico, ricercatore e custode dell
 - **Effetti nebbia** animata, vignetta cinematografica
 - **Particelle dorate atmosferiche** generate via Three.js (scintille/cenere luminosa)
 - Bandiera albanese stilizzata che ondeggia
-- Titolo **PUALIN ZEFI** con reveal animation 3D
+- Titolo **PAULIN ZEFI** con reveal animation 3D
 - Pulsanti: *Scopri la storia*, *Le pubblicazioni*, *Contatti*
 - **Musica ambient generativa** (drone medievale Web Audio API – attivabile)
 - Scroll indicator animato
@@ -199,7 +199,7 @@ Sito web premium dedicato a **Pualin Zefi**, storico, ricercatore e custode dell
 
 - **Pagine dedicate** per ogni pubblicazione (attualmente single-page)
 - **Sistema di ricerca full-text** nelle pubblicazioni
-- **Galleria con upload reali** delle foto storiche personali di Pualin Zefi
+- **Galleria con upload reali** delle foto storiche personali di Paulin Zefi
 - **Video YouTube reali** del professore (attualmente placeholder generici)
 - **Sezione blog/articoli** con CMS dinamico
 - **Multilingua** (Albanese / Italiano / Inglese)
@@ -213,12 +213,12 @@ Sito web premium dedicato a **Pualin Zefi**, storico, ricercatore e custode dell
 
 ## 🚀 Prossimi Passi Consigliati
 
-1. **Sostituire le immagini placeholder** (Unsplash) con foto autentiche di Pualin Zefi, del Castello di Lezha e del Memoriale di Skanderbeg
+1. **Sostituire le immagini placeholder** (Unsplash) con foto autentiche di Paulin Zefi, del Castello di Lezha e del Memoriale di Skanderbeg
 2. **Inserire URL YouTube reali** dei video/conferenze del professore
 3. **Caricare PDF veri** delle pubblicazioni nel sistema
 4. **Aggiornare le informazioni di contatto** (email, telefono WhatsApp, social) con quelle reali
 5. **Aggiungere meta tag og:image** con immagine social personalizzata
-6. **Configurare dominio personalizzato** (es. `pualinzefi.al` o `lezha-historia.al`)
+6. **Configurare dominio personalizzato** (es. `paulinzefi.al` o `lezha-historia.al`)
 7. **Pubblicare il sito** tramite la **Publish tab** di Genspark
 
 ---
@@ -231,7 +231,7 @@ Per pubblicare il sito online e renderlo accessibile via URL pubblica, utilizza 
 
 ## 📜 Licenza
 
-© Pualin Zefi · Tutti i diritti riservati · Lezha, Albania 🇦🇱
+© Paulin Zefi · Tutti i diritti riservati · Lezha, Albania 🇦🇱
 
 *"Chi dimentica la propria storia è condannato a perdere la propria identità."*
 # sito-paolo-zefi

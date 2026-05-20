@@ -1,5 +1,5 @@
 <section id="lezha" class="lezha-section">
-  <div class="section-header">
+  <div class="section-header reveal">
     <span class="section-tag">{{ 'sections.lezha.title' | translate }}</span>
     <h2 class="section-title">{{ 'sections.lezha.title' | translate }}</h2>
     <p class="section-subtitle">{{ 'sections.lezha.subtitle' | translate }}</p>
@@ -12,11 +12,11 @@
   </div>
 
   <div class="stories-grid">
-    <div class="story-card" *ngFor="let story of stories" [class.highlighted]="story.id === 3">
-      <div class="story-icon">
+    <div class="story-card" *ngFor="let story of (stories.length ? stories : fallbackStories)" [class.highlight]="story.id === 3">
+      <div class="card-icon" [class.glow]="story.id === 3">
         <i [ngClass]="story.icon"></i>
       </div>
-      <span class="story-era">{{ story.era }}</span>
+      <span class="card-era">{{ story.era }}</span>
       <h3>{{ story.title }}</h3>
       <p>{{ story.description }}</p>
     </div>

@@ -24,9 +24,9 @@ export interface Biography {
 @Injectable()
 export class ContentService {
   private biography: Biography = {
-    portraitUrl: '/assets/pualin-zefi-portrait.jpg',
+    portraitUrl: '/assets/paulin-zefi-portrait.jpg',
     bioText:
-      'Pualin Zefi è uno storico e ricercatore specializzato nella storia medievale albanese, con particolare focus sulla Lega di Alessio e il ruolo di Lezha durante il XV secolo. Ha dedicato la sua vita allo studio e alla preservazione del patrimonio culturale albanese.',
+      'Paulin Zefi è uno storico e ricercatore specializzato nella storia medievale albanese, con particolare focus sulla Lega di Alessio e il ruolo di Lezha durante il XV secolo. Ha dedicato la sua vita allo studio e alla preservazione del patrimonio culturale albanese.',
     stats: [
       { label: 'Anni di Ricerca', value: '40+' },
       { label: 'Pubblicazioni', value: '50+' },
@@ -36,7 +36,7 @@ export class ContentService {
       {
         year: '1965',
         title: 'Nascita',
-        description: 'Pualin Zefi nasce a Lezha',
+        description: 'Paulin Zefi nasce a Lezha',
       },
       {
         year: '1989',

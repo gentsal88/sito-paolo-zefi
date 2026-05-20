@@ -30,7 +30,7 @@ export class BiografiaComponent implements OnInit {
 
   // Fallback data
   fallbackTimelineItems = [
-    { year: '1965', title: 'Nascita', description: 'Pualin Zefi nasce a Lezha' },
+    { year: '1965', title: 'Nascita', description: 'Paulin Zefi nasce a Lezha' },
     { year: '1989', title: 'Laurea', description: 'Si laurea in Storia Medievale all\'Università di Tirana' },
     { year: '1995', title: 'Primi Studi', description: 'Pubblica i primi studi sui manoscritti della Lega di Alessio' },
     { year: '2005', title: 'Conservatore', description: 'Diventa Conservatore del Patrimonio Storico di Lezha' },

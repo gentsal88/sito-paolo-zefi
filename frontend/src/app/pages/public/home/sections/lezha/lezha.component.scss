@@ -1,6 +1,212 @@
 .lezha-section {
   padding: 120px 40px;
-  background: linear-gradient(135deg, #14110f 0%, #1c1815 100%);
+  background: var(--color-bg-alt, #14110f);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(184,134,11,0.08) 0%, transparent 40%),
+      radial-gradient(circle at 70% 80%, rgba(107,31,36,0.12) 0%, transparent 50%);
+    pointer-events: none;
+  }
+}
+
+.section-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 80px;
+}
+
+.section-tag {
+  display: inline-block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  letter-spacing: 5px;
+  color: #b8860b;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  position: relative;
+  padding: 0 30px;
+
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 20px;
+    height: 1px;
+    background: #b8860b;
+  }
+  &::before { right: 100%; }
+  &::after  { left: 100%; }
+}
+
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+  background: linear-gradient(180deg, #e8dcc4 0%, #b8860b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  color: #9c948a;
+}
+
+.lezha-quote {
+  max-width: 900px;
+  margin: 0 auto 80px;
+  text-align: center;
+  padding: 50px 40px;
+  border-top: 1px solid rgba(184,134,11,0.4);
+  border-bottom: 1px solid rgba(184,134,11,0.4);
+  position: relative;
+  z-index: 2;
+
+  i {
+    color: #b8860b;
+    font-size: 2rem;
+    opacity: 0.5;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.2rem, 2vw, 1.7rem);
+    line-height: 1.6;
+    color: #e8dcc4;
+    margin-bottom: 20px;
+  }
+
+  span {
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    letter-spacing: 4px;
+    color: #d4a93a;
+    text-transform: uppercase;
+  }
+}
+
+.stories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  max-width: 1300px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* ---- Story card — mirrored from static reference ---- */
+.story-card {
+  background: linear-gradient(135deg, rgba(28,24,21,0.8), rgba(14,11,9,0.95));
+  border: 1px solid rgba(184,134,11,0.15);
+  padding: 40px 32px;
+  position: relative;
+  overflow: hidden;
+  transition: all .5s cubic-bezier(0.22, 0.61, 0.36, 1);
+  backdrop-filter: blur(10px);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, transparent, #b8860b, transparent);
+    transform: scaleX(0);
+    transition: transform .5s;
+  }
+
+  &:hover {
+    border-color: rgba(184,134,11,0.5);
+    transform: translateY(-8px);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 40px rgba(184,134,11,0.15);
+
+    &::before { transform: scaleX(1); }
+
+    .card-icon {
+      transform: rotate(10deg) scale(1.1);
+      background: #b8860b;
+      color: #0a0908;
+    }
+  }
+
+  &.highlight {
+    background: linear-gradient(135deg, rgba(107,31,36,0.25), rgba(28,24,21,0.95));
+    border-color: rgba(184,134,11,0.4);
+  }
+
+  h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.4rem;
+    color: #e8dcc4;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+    line-height: 1.3;
+  }
+
+  p {
+    color: #9c948a;
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+}
+
+/* ---- Card icon (circular, like reference) ---- */
+.card-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(184,134,11,0.2), transparent);
+  border: 1px solid #b8860b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #d4a93a;
+  font-size: 1.4rem;
+  margin-bottom: 24px;
+  transition: all .4s;
+
+  &.glow {
+    box-shadow: 0 0 25px rgba(184,134,11,0.4);
+    animation: icon-glow 3s ease-in-out infinite;
+  }
+}
+
+@keyframes icon-glow {
+  0%, 100% { box-shadow: 0 0 25px rgba(184,134,11,0.4); }
+  50%       { box-shadow: 0 0 45px rgba(184,134,11,0.7); }
+}
+
+/* ---- Card era badge ---- */
+.card-era {
+  display: inline-block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  letter-spacing: 3px;
+  color: #b8860b;
+  margin-bottom: 12px;
+  padding: 4px 12px;
+  border: 1px solid rgba(184,134,11,0.3);
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .lezha-section { padding: 60px 20px; }
+  .stories-grid { grid-template-columns: 1fr; }
+  .story-card.highlight { transform: none; }
 }
 
 .section-header {

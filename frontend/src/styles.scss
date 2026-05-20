@@ -1,5 +1,5 @@
 /* =========================================
-   PUALIN ZEFI · Sito Storico Cinematografico
+  PAULIN ZEFI · Sito Storico Cinematografico
    Palette: nero carbone, oro antico, bronzo, borgogna, grigio pietra
    ========================================= */
 
@@ -137,4 +137,221 @@ textarea,
 select {
   font-family: inherit;
 }
+
+/* ===================================================
+   PRELOADER  (come nel sito di riferimento)
+   =================================================== */
+.preloader {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, #1a1612 0%, #0a0908 70%);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 1s ease, visibility 1s ease;
+}
+
+.preloader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.preloader-content {
+  text-align: center;
+  color: var(--color-gold);
+}
+
+.preloader-crest {
+  width: 220px;
+  height: 220px;
+  object-fit: contain;
+  margin: 0 auto 30px;
+  display: block;
+  animation: crest-pulse 2.5s ease-in-out infinite;
+  filter: drop-shadow(0 0 30px rgba(184,134,11,0.6));
+}
+
+@keyframes crest-pulse {
+  0%, 100% { transform: scale(1) rotate(0deg);    filter: drop-shadow(0 0 20px rgba(184,134,11,0.4)); }
+  50%       { transform: scale(1.05) rotate(2deg); filter: drop-shadow(0 0 40px rgba(184,134,11,0.7)); }
+}
+
+.preloader-bar {
+  width: 240px;
+  height: 2px;
+  background: rgba(184,134,11,0.2);
+  margin: 0 auto 20px;
+  overflow: hidden;
+
+  span {
+    display: block;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+    animation: bar-fill 2.5s ease-in-out infinite;
+  }
+}
+
+@keyframes bar-fill {
+  0%   { width: 0%;    transform: translateX(-100%); }
+  50%  { width: 100%;  transform: translateX(0); }
+  100% { width: 100%;  transform: translateX(100%); }
+}
+
+/* ===================================================
+   NAVBAR — scrolled state
+   =================================================== */
+.main-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  transition: all 0.5s var(--easing);
+  padding: 18px 0;
+  background: linear-gradient(180deg, rgba(10,9,8,0.6) 0%, transparent 100%);
+  backdrop-filter: blur(0px);
+
+  &.scrolled {
+    padding: 12px 0;
+    background: rgba(10,9,8,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(184,134,11,0.15);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  }
+}
+
+/* ===================================================
+   SECTION HEADERS — global baseline (every section)
+   =================================================== */
+.section-tag {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  letter-spacing: 5px;
+  color: var(--color-gold);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  position: relative;
+  padding: 0 30px;
+
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 20px;
+    height: 1px;
+    background: var(--color-gold);
+  }
+  &::before { right: 100%; }
+  &::after  { left: 100%; }
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+  background: linear-gradient(180deg, var(--color-cream) 0%, var(--color-gold) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-subtitle {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  color: var(--color-text-dim);
+}
+
+/* ===================================================
+   SCROLL-REVEAL  (CSS-only, enhanced via JS below)
+   =================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity .8s var(--easing), transform .8s var(--easing);
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity .8s var(--easing), transform .8s var(--easing);
+
+  &.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity .8s var(--easing), transform .8s var(--easing);
+
+  &.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ===================================================
+   TIMELINE  — global styles shared by all pages
+   =================================================== */
+.timeline-content {
+  background: linear-gradient(135deg, rgba(28,24,21,0.9), rgba(20,17,15,0.9));
+  padding: 28px 30px;
+  border: 1px solid rgba(184,134,11,0.2);
+  backdrop-filter: blur(10px);
+  transition: all .4s;
+
+  &:hover {
+    border-color: var(--color-gold);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-gold);
+  }
+
+  h4 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--color-cream);
+    margin: 10px 0 12px;
+    letter-spacing: 1px;
+  }
+
+  p {
+    color: var(--color-text-dim);
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+}
+
+/* ===================================================
+   PORTRAIT FRAME  — global ornament corners
+   =================================================== */
+.portrait-frame {
+  transition: transform .6s var(--easing);
+  &:hover { transform: scale(1.02) rotate(-1deg); }
+}
+
+/* ===================================================
+   BUTTON global sheen
+   =================================================== */
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  transition: left .8s;
+}
+.btn:hover::before { left: 100%; }
+
 
