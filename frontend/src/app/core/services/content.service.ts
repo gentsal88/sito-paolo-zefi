@@ -17,6 +17,9 @@ export interface Story {
   era: string;
   title: string;
   description: string;
+  articleUrl?: string;
+  downloadUrl?: string;
+  content?: string;
 }
 
 export interface Biography {
@@ -64,6 +67,10 @@ export class ContentService {
 
   getStories(): Observable<Story[]> {
     return this.http.get<Story[]>(`${this.apiUrl}/stories`);
+  }
+
+  getStory(id: string | number): Observable<Story> {
+    return this.http.get<Story>(`${this.apiUrl}/stories/${id}`);
   }
 
   getTimeline(): Observable<TimelineItem[]> {

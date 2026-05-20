@@ -7,6 +7,6 @@ import { TranslateModule } from '@ngx-translate/core';
   standalone: true,
   imports: [CommonModule, TranslateModule],
   templateUrl: './video.component.html',
-  styleUrl: './video.component.scss',
+  styleUrls: ['./video.component.scss'],
 })
 export class VideoComponent {}

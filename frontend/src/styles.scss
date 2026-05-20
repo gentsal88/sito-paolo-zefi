@@ -318,6 +318,30 @@ select {
     box-shadow: var(--shadow-gold);
   }
 
+
+/* Progress line that grows while scrolling timeline items into view */
+.timeline {
+  position: relative;
+
+  .timeline-progress {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    width: 2px;
+    height: 0;
+    background: var(--color-gold);
+    transition: height .55s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 1;
+  }
+
+  @media (max-width: 1024px) {
+    .timeline-progress {
+      left: 0;
+      transform: none;
+    }
+  }
+}
   h4 {
     font-family: var(--font-display);
     font-size: 1.25rem;

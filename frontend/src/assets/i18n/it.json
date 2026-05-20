@@ -20,6 +20,16 @@
     "search": "Cerca",
     "welcome": "Benvenuto",
     "language": "Lingua"
+    ,"read": "Leggi",
+    "download": "Scarica"
+  },
+  "actions": {
+    "read": "Leggi",
+    "download": "Scarica",
+    "back": "Indietro"
+  },
+  "home": {
+    "back_home": "Torna alla Home"
   },
   "header": {
     "biografia": "Biografia",
@@ -73,7 +83,9 @@
       "mission": "La sua missione è semplice ma profonda: preservare la memoria di Lezha e trasmetterla alle generazioni future, affinché non si dimentichino i sacrifici e la gloria di coloro che hanno difeso questa terra.",
       "years_research": "Anni di Ricerca",
       "publications": "Pubblicazioni",
-      "conferences": "Conferenze"
+      "conferences": "Conferenze",
+      "showMore": "Mostra altro",
+      "showLess": "Mostra meno"
     },
     "lezha": {
       "chapter": "Capitolo II",
@@ -119,6 +131,9 @@
       "message_sent": "Messaggio inviato con successo!",
       "message_error": "Errore nell'invio del messaggio. Riprova."
     }
+  },
+  "content": {
+    "not_found": "Articolo non trovato"
   },
   "footer": {
     "copyright": "© 2026 Paulin Zefi. Tutti i diritti riservati.",

@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './preloader.component.html',
-  styleUrl: './preloader.component.scss',
+  styleUrls: ['./preloader.component.scss'],
 })
 export class PreloaderComponent implements OnInit {
   isHidden = signal(false);

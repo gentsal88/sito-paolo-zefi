@@ -9,7 +9,7 @@ import { ContactService } from '@core/services/contact.service';
   standalone: true,
   imports: [CommonModule, FormsModule, TranslateModule],
   templateUrl: './contatti.component.html',
-  styleUrl: './contatti.component.scss',
+  styleUrls: ['./contatti.component.scss'],
 })
 export class ContattiComponent implements OnInit {
   form = {

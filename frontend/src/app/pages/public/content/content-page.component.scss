@@ -1,0 +1,43 @@
+.content-page {
+  padding: 40px 24px;
+  max-width: 900px;
+  margin: 30px auto;
+  color: #e8dcc4;
+
+  .content-header {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .btn {
+    background: transparent;
+    border: 1px solid rgba(184,134,11,0.25);
+    color: #d4a93a;
+    padding: 10px 14px;
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+  }
+
+  h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 2rem;
+    margin-bottom: 6px;
+    color: #f4ead8;
+  }
+
+  .era {
+    color: #b8860b;
+    margin-bottom: 18px;
+  }
+
+  .description {
+    color: #c9bfa8;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .content-actions { display: flex; gap: 14px; }
+}

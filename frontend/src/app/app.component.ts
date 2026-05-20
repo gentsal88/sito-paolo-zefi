@@ -12,9 +12,9 @@ import { FaviconService } from '@core/services/favicon.service';
   imports: [RouterOutlet],
   template: `
     <!-- Preloader con aquila albanese -->
-    <div class="preloader" id="preloader">
+    <div *ngIf="showPreloader" class="preloader" id="preloader">
       <div class="preloader-content">
-        <img src="assets/icons/aquilla_gold.png" alt="Aquila" class="preloader-crest" />
+        <img src="assets/icons/eagle.svg" alt="Aquila" class="preloader-crest" />
         <div class="preloader-bar"><span></span></div>
       </div>
     </div>
@@ -24,6 +24,7 @@ import { FaviconService } from '@core/services/favicon.service';
 })
 export class AppComponent implements OnInit {
   title = 'Sito Paulo Zefi';
+  showPreloader = true;
 
   constructor(
     private languageService: LanguageService,
@@ -36,10 +37,23 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     // --- Preloader: hide after 2.8s ---
-    setTimeout(() => {
-      const preloader = this.document.getElementById('preloader');
-      if (preloader) preloader.classList.add('hidden');
-    }, 2800);
+    // Don't show preloader on memorial/gusto pages
+    try {
+      const initialUrl = (this.router.url || '').toLowerCase();
+      if (initialUrl.includes('memorial') || initialUrl.includes('memoriale') || initialUrl.includes('gusto') || initialUrl.includes('gustos') || initialUrl.includes('memoria')) {
+        this.showPreloader = false;
+      }
+    } catch (e) {
+      // noop
+    }
+
+    // Hide the preloader after 2.8s if it is shown
+    if (this.showPreloader) {
+      setTimeout(() => {
+        const preloader = this.document.getElementById('preloader');
+        if (preloader) preloader.classList.add('hidden');
+      }, 2800);
+    }
 
     // --- Navbar scroll class ---
     const header = this.document.getElementById('main-header');
@@ -69,6 +83,47 @@ export class AppComponent implements OnInit {
         observer.observe(el);
       });
     }, 300);
+
+    // --- TIMELINE: draw progress line as timeline items become visible ---
+    setTimeout(() => {
+      // ensure a progress bar exists for each timeline
+      this.document.querySelectorAll('.timeline').forEach(tl => {
+        if (!(tl as HTMLElement).querySelector('.timeline-progress')) {
+          const prog = this.document.createElement('div');
+          prog.className = 'timeline-progress';
+          (tl as HTMLElement).appendChild(prog);
+        }
+      });
+
+      const timelineObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const item = entry.target as HTMLElement;
+          const tl = item.closest('.timeline') as HTMLElement | null;
+          if (!tl) return;
+
+          if (entry.isIntersecting) {
+            item.classList.add('visible');
+          }
+
+          // compute the furthest visible item in this timeline
+          const items = Array.from(tl.querySelectorAll('.timeline-item')) as HTMLElement[];
+          const visibleItems = items.filter(i => i.classList.contains('visible'));
+          const lastVisible = visibleItems.length ? visibleItems[visibleItems.length - 1] : null;
+          const prog = tl.querySelector('.timeline-progress') as HTMLElement | null;
+          if (!prog) return;
+
+          if (lastVisible) {
+            const height = lastVisible.offsetTop + Math.round(lastVisible.offsetHeight / 2);
+            prog.style.height = height + 'px';
+          } else {
+            prog.style.height = '0px';
+          }
+        });
+      }, { threshold: 0.15 });
+
+      // observe all timeline items
+      this.document.querySelectorAll('.timeline .timeline-item').forEach(el => timelineObserver.observe(el));
+    }, 400);
 
     // --- Stat counters: animate numbers when visible ---
     const counterObserver = new IntersectionObserver((entries) => {
@@ -117,7 +172,7 @@ export class AppComponent implements OnInit {
       .subscribe((ev) => {
         const url = (ev.urlAfterRedirects || ev.url).toLowerCase();
         if (url.includes('memorial') || url.includes('memoriale') || url.includes('gusto')) {
-          this.favicon.setFavicon('assets/icons/aquilla_gold.png', 'image/png');
+          this.favicon.setFavicon('assets/icons/eagle.svg', 'image/svg+xml');
         } else {
           this.favicon.resetFavicon();
         }

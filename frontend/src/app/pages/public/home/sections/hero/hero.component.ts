@@ -22,7 +22,7 @@ interface Particle {
   standalone: true,
   imports: [CommonModule, TranslateModule],
   templateUrl: './hero.component.html',
-  styleUrl: './hero.component.scss',
+  styleUrls: ['./hero.component.scss'],
 })
 export class HeroComponent implements AfterViewInit, OnDestroy {
   @ViewChild('atmosphereCanvas') canvasRef!: ElementRef<HTMLCanvasElement>;

@@ -8,7 +8,7 @@ import { GalleryService } from '@core/services/gallery.service';
   standalone: true,
   imports: [CommonModule, TranslateModule],
   templateUrl: './galleria.component.html',
-  styleUrl: './galleria.component.scss',
+  styleUrls: ['./galleria.component.scss'],
 })
 export class GalleriaComponent implements OnInit {
   lightboxOpen = signal(false);

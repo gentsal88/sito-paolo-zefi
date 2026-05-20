@@ -46,13 +46,27 @@
 
   <h3 class="timeline-title reveal">{{ 'sections.biografia.timelineTitle' | translate }}</h3>
 
-  <div class="timeline">
-    <div class="timeline-item" *ngFor="let item of timelineItems">
+  <div class="timeline" #timelineContainer>
+    <div class="timeline-line" #timelineLine></div>
+    <div class="timeline-item reveal" *ngFor="let item of visibleTimelineItems">
       <div class="timeline-dot"></div>
       <div class="timeline-content" [attr.data-year]="item.year">
         <h4>{{ item.title }}</h4>
         <p>{{ item.description }}</p>
       </div>
+    </div>
+    <div class="timeline-controls" *ngIf="timelineItems && timelineItems.length > timelinePreviewCount">
+      <button class="btn-link" (click)="toggleTimeline()" [attr.aria-label]="(showAllTimeline ? ('sections.biografia.showLess' | translate) : ('sections.biografia.showMore' | translate))">
+        <span class="icon"> 
+          <svg *ngIf="!showAllTimeline" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" stroke="#d4a93a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <svg *ngIf="showAllTimeline" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M18 15l-6-6-6 6" stroke="#d4a93a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="sr-only">{{ showAllTimeline ? ('sections.biografia.showLess' | translate) : ('sections.biografia.showMore' | translate) }}</span>
+      </button>
     </div>
   </div>
 </section>

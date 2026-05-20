@@ -1,0 +1,23 @@
+<section class="content-page">
+  <div class="content-header">
+    <button class="btn back" (click)="goBack()">{{ 'actions.back' | translate }}</button>
+    <button class="btn home" (click)="goHome()">{{ 'home.back_home' | translate }}</button>
+  </div>
+
+  <div class="content-body" *ngIf="story; else notfound">
+    <h1>{{ story.title }}</h1>
+    <p class="era">{{ story.era }}</p>
+    <div class="description">{{ story.description }}</div>
+
+    <div class="content-actions">
+      <button class="btn read" (click)="read()">{{ 'actions.read' | translate }}</button>
+      <button class="btn download" (click)="download()">{{ 'actions.download' | translate }}</button>
+    </div>
+  </div>
+
+  <ng-template #notfound>
+    <div class="not-found">
+      <p>{{ 'content.not_found' | translate }}</p>
+    </div>
+  </ng-template>
+</section>

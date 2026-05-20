@@ -330,6 +330,55 @@
   font-size: 0.9rem;
 }
 
+.card-actions {
+  margin-top: 26px;
+  display: flex;
+  gap: 18px;
+
+  .action-read,
+  .action-download {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    color: #d4a93a;
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+    background: transparent;
+    border: 1px solid rgba(212,169,58,0.06);
+    cursor: pointer;
+    transition: all .2s ease;
+  }
+
+  .action-read {
+    background: linear-gradient(90deg, #ffd775 0%, #d4a93a 100%);
+    color: #0a0908;
+    border-color: rgba(212,169,58,0.18);
+    box-shadow: 0 6px 18px rgba(212,169,58,0.08);
+  }
+
+  .action-download {
+    color: #d4a93a;
+    background: transparent;
+  }
+
+  .action-read:hover,
+  .action-download:hover {
+    transform: translateY(-3px);
+    color: #ffd775;
+  }
+
+  .action-read:focus,
+  .action-download:focus {
+    outline: 3px solid rgba(212,169,58,0.16);
+    outline-offset: 2px;
+  }
+}
+
 @media (max-width: 768px) {
   .lezha-section {
     padding: 60px 20px;

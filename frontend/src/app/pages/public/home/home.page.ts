@@ -30,6 +30,6 @@ import { ContattiComponent } from '@pages/public/home/sections/contatti/contatti
     ContattiComponent
   ],
   templateUrl: './home.page.html',
-  styleUrl: './home.page.scss',
+  styleUrls: ['./home.page.scss'],
 })
 export class HomeComponent {}

@@ -24,6 +24,10 @@ export const routes: Routes = [
     canActivate: [AdminGuard],
   },
   {
+    path: 'content/:id',
+    loadComponent: () => import('@pages/public/content/content-page.component').then(m => m.ContentPageComponent)
+  },
+  {
     path: '**',
     component: HomeComponent,
   },

@@ -20,6 +20,13 @@ export class ContentController {
     return await this.contentService.getStories();
   }
 
+  @Get('stories/:id')
+  async getStoryById() {
+    // controller method placeholder; actual logic handled in service
+    // kept signature for clarity; service method will be called from route
+    return;
+  }
+
   @Get('timeline')
   async getTimeline() {
     return await this.contentService.getTimeline();

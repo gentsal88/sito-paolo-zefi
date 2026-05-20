@@ -20,6 +20,16 @@
     "search": "Buscar",
     "welcome": "Bienvenido",
     "language": "Idioma"
+    ,"read": "Leer",
+    "download": "Descargar"
+  },
+  "actions": {
+    "read": "Leer",
+    "download": "Descargar",
+    "back": "Atrás"
+  },
+  "home": {
+    "back_home": "Volver al Inicio"
   },
   "header": {
     "biografia": "Biografía",
@@ -118,6 +128,9 @@
       "message_sent": "¡Mensaje enviado con éxito!",
       "message_error": "Error al enviar el mensaje. Por favor, inténtelo de nuevo."
     }
+  },
+  "content": {
+    "not_found": "Artículo no encontrado"
   },
   "footer": {
     "copyright": "© 2026 Paulin Zefi. Todos los derechos reservados.",

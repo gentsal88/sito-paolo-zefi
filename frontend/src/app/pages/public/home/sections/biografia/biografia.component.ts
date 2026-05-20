@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { ContentService, Biography, TimelineItem } from '@core/services/content.service';
@@ -9,12 +9,19 @@ import { TranslateService } from '@ngx-translate/core';
   standalone: true,
   imports: [CommonModule, TranslateModule],
   templateUrl: './biografia.component.html',
-  styleUrl: './biografia.component.scss',
+    styleUrls: ['./biografia.component.scss'],
 })
-export class BiografiaComponent implements OnInit {
+export class BiografiaComponent implements OnInit, AfterViewChecked {
   timelineItems: TimelineItem[] = [];
   portraitUrl = 'assets/images/paolo-id.png';
   stats: any[] = [];
+  // Timeline display control
+  showAllTimeline = false;
+  timelinePreviewCount = 3;
+  private lastLineHeight = -1;
+
+  @ViewChild('timelineContainer') private timelineContainer?: ElementRef<HTMLElement>;
+  @ViewChild('timelineLine') private timelineLine?: ElementRef<HTMLElement>;
 
   constructor(private contentService: ContentService, private translate: TranslateService) {}
 
@@ -31,6 +38,41 @@ export class BiografiaComponent implements OnInit {
         this.timelineItems = this.getLocaleFallback();
       },
     });
+  }
+
+  get visibleTimelineItems(): TimelineItem[] {
+    return this.showAllTimeline ? this.timelineItems : this.timelineItems.slice(0, this.timelinePreviewCount);
+  }
+
+  toggleTimeline() {
+    this.showAllTimeline = !this.showAllTimeline;
+  }
+
+  ngAfterViewChecked(): void {
+    this.updateLineHeight();
+  }
+
+  private updateLineHeight(): void {
+    try {
+      if (!this.timelineContainer || !this.timelineLine) return;
+      const containerEl = this.timelineContainer.nativeElement as HTMLElement;
+      const items = containerEl.querySelectorAll('.timeline-item');
+      if (!items || items.length === 0) {
+        this.timelineLine.nativeElement.style.height = '0px';
+        return;
+      }
+      const lastItem = items[items.length - 1] as HTMLElement;
+      const containerRect = containerEl.getBoundingClientRect();
+      const lastRect = lastItem.getBoundingClientRect();
+      const height = (lastRect.top + lastRect.height / 2) - containerRect.top;
+      const h = Math.max(0, Math.round(height));
+      if (this.lastLineHeight !== h) {
+        this.timelineLine.nativeElement.style.height = h + 'px';
+        this.lastLineHeight = h;
+      }
+    } catch (err) {
+      // silent
+    }
   }
 
   private getLocaleFallback(): TimelineItem[] {

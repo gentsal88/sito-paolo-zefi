@@ -12,6 +12,9 @@ export interface Story {
   era: string;
   title: string;
   description: string;
+  articleUrl?: string;
+  downloadUrl?: string;
+  content?: string;
 }
 
 export interface Biography {
@@ -95,6 +98,9 @@ export class ContentService {
       title: 'La Lega di Alessio',
       description:
         "Il patto storico che unì i principi albanesi contro l'Impero Ottomano",
+      articleUrl: '/assets/articles/lega-di-alessio.html',
+      downloadUrl: '/assets/articles/lega-di-alessio.pdf',
+      content: 'Testo completo dell\'articolo sulla Lega di Alessio.'
     },
     {
       id: 4,
@@ -121,6 +127,11 @@ export class ContentService {
         'Lezha come patrimonio culturale e centro di studi storici internazionali',
     },
   ];
+
+  async getStory(id: string | number): Promise<Story | null> {
+    const found = this.stories.find((s) => String(s.id) === String(id));
+    return found ?? null;
+  }
 
   async getAll() {
     return {

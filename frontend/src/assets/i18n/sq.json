@@ -24,6 +24,16 @@
     "search": "Kërko",
     "welcome": "Mirësevini",
     "language": "Gjuha"
+    ,"read": "Lexo",
+    "download": "Shkarko"
+  },
+  "actions": {
+    "read": "Lexo",
+    "download": "Shkarko",
+    "back": "Prapa"
+  },
+  "home": {
+    "back_home": "Kthehu në Ballinë"
   },
   "header": {
     "biografia": "Biografia",
@@ -76,7 +86,9 @@
       "mission": "Mësioni i tij është i thjeshtë por i thellë: të ruajë kujtesën e Lezhës dhe ta kalojë atë brezave të ardhshëm, në mënyrë që ata mos të harrrojnë sakrificat dhe lavdinë e atyre që mbrojnë këtë tokë.",
       "years_research": "Vjet Kërkimi",
       "publications": "Publikime",
-      "conferences": "Konference"
+      "conferences": "Konference",
+      "showMore": "Shfaq më shumë",
+      "showLess": "Shfaq më pak"
     },
     "lezha": {
       "title": "Lezha",
@@ -118,6 +130,9 @@
       "message_sent": "Mesazhi u dërgua me sukses!",
       "message_error": "Gabim në dërgimin e mesazhit. Ju lutemi provoni përsëri."
     }
+  },
+  "content": {
+    "not_found": "Artikulli nuk u gjet"
   },
   "footer": {
     "copyright": "© 2026 Paulin Zefi. Të gjitha të drejtat të ruajtura.",

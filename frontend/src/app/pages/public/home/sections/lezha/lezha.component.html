@@ -19,6 +19,10 @@
       <span class="card-era">{{ story.era }}</span>
       <h3>{{ story.title }}</h3>
       <p>{{ story.description }}</p>
+      <div class="card-actions">
+        <button type="button" class="action-read" (click)="readArticle(story)">{{ 'actions.read' | translate }}</button>
+        <button type="button" class="action-download" (click)="downloadArticle(story)">{{ 'actions.download' | translate }}</button>
+      </div>
     </div>
   </div>
 

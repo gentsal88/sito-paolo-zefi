@@ -8,7 +8,7 @@ import { PublicationsService } from '@core/services/publications.service';
   standalone: true,
   imports: [CommonModule, TranslateModule],
   templateUrl: './pubblicazioni.component.html',
-  styleUrl: './pubblicazioni.component.scss',
+  styleUrls: ['./pubblicazioni.component.scss'],
 })
 export class PubblicazioniComponent implements OnInit {
   filter = 'all';

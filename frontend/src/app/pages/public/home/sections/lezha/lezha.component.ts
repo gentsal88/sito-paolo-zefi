@@ -3,19 +3,20 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { ContentService } from '@core/services/content.service';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lezha',
   standalone: true,
   imports: [CommonModule, TranslateModule],
   templateUrl: './lezha.component.html',
-  styleUrl: './lezha.component.scss',
+  styleUrls: ['./lezha.component.scss'],
 })
 export class LezhaComponent implements OnInit {
   stories: any[] = [];
   timelinePoints: Array<{ year: string; label: string }> = [];
 
-  constructor(private contentService: ContentService, private translate: TranslateService) {}
+  constructor(private contentService: ContentService, private translate: TranslateService, private router: Router) {}
 
   ngOnInit() {
     this.contentService.getStories().subscribe({
@@ -37,6 +38,63 @@ export class LezhaComponent implements OnInit {
         this.timelinePoints = this.getLocaleFallback();
       }
     });
+  }
+
+  openOrDownload(story: any) {
+    if (!story) return;
+    // If an explicit article URL is provided, open it in a new tab
+    if (story.articleUrl) {
+      window.open(story.articleUrl, '_blank');
+      return;
+    }
+
+    // If an explicit download URL is provided, open it
+    if (story.downloadUrl) {
+      window.open(story.downloadUrl, '_blank');
+      return;
+    }
+
+    // Fallback: navigate to a content page with the story id
+    try {
+      this.router.navigate(['/content', story.id]);
+    } catch (err) {
+      console.warn('Navigation failed, opening content in same tab as fallback', err);
+      window.open(`/content/${story.id}`, '_self');
+    }
+  }
+
+  readArticle(story: any) {
+    if (!story) return;
+    if (story.articleUrl) {
+      window.open(story.articleUrl, '_blank');
+      return;
+    }
+    // fallback to internal content page
+    try {
+      this.router.navigate(['/content', story.id]);
+    } catch (err) {
+      window.open(`/content/${story.id}`, '_self');
+    }
+  }
+
+  downloadArticle(story: any) {
+    if (!story) return;
+    if (story.downloadUrl) {
+      // open direct download
+      window.open(story.downloadUrl, '_blank');
+      return;
+    }
+    // if no download url, but article exists, open article so user can save/print
+    if (story.articleUrl) {
+      window.open(story.articleUrl, '_blank');
+      return;
+    }
+    // fallback: attempt to open a download endpoint
+    try {
+      window.open(`${window.location.origin}/content/${story.id}/download`, '_blank');
+    } catch (err) {
+      console.warn('Download fallback failed', err);
+    }
   }
 
   private getLocaleFallback() {

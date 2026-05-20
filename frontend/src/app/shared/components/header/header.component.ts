@@ -16,7 +16,7 @@ interface NavLink {
   standalone: true,
   imports: [CommonModule, RouterLink, TranslateModule, LanguageSwitcherComponent],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
   isScrolled = signal(false);
