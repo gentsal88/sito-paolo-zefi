@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: sito-paulo-zefi-mongodb
+    ports:
+      - '27017:27017'
+    environment:
+      MONGO_INITDB_DATABASE: sito-paulo-zefi
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - sito-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: sito-paulo-zefi-backend
+    ports:
+      - '3000:3000'
+    environment:
+      NODE_ENV: development
+      MONGODB_URI: mongodb://mongodb:27017/sito-paulo-zefi
+      JWT_SECRET: super_secret_key
+      JWT_EXPIRATION: 24h
+    depends_on:
+      - mongodb
+    volumes:
+      - ./backend/src:/app/src
+    networks:
+      - sito-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: sito-paulo-zefi-frontend
+    ports:
+      - '4200:4200'
+    environment:
+      API_URL: http://localhost:3000
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend/src:/app/src
+    networks:
+      - sito-network
+
+volumes:
+  mongodb_data:
+
+networks:
+  sito-network:
+    driver: bridge
