@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pualin Zefi - Storico, ricercatore e custode della memoria albanese. Studi su Lezha, Skanderbeg e la Lega di Alessio.">
+    <meta name="keywords" content="Pualin Zefi, Lezha, Skanderbeg, storia albanese, Lega di Alessio, Gjergj Kastrioti, castello, memoriale">
+    <meta name="author" content="Pualin Zefi">
+    <meta property="og:title" content="Pualin Zefi · Storico di Lezha">
+    <meta property="og:description" content="Custode della memoria albanese - Studioso della storia medievale di Lezha e dell'epopea di Skanderbeg.">
+    <meta property="og:type" content="website">
+    <title>Pualin Zefi · Storico di Lezha · Custode della Memoria Albanese</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- GSAP -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js"></script>
+
+    <!-- Three.js per effetti atmosferici leggeri -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+</head>
+<body>
+
+    <!-- ============ PRELOADER ============ -->
+    <div id="preloader" class="preloader" aria-hidden="true">
+        <div class="preloader-content">
+            <div class="crest">
+                <!-- Stemma stilizzato Aquila bicipite albanese -->
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="crest-svg">
+                    <defs>
+                        <radialGradient id="goldGrad" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#f4d27a"/>
+                            <stop offset="60%" stop-color="#b8860b"/>
+                            <stop offset="100%" stop-color="#5e3a0a"/>
+                        </radialGradient>
+                    </defs>
+                    <circle cx="100" cy="100" r="92" fill="none" stroke="url(#goldGrad)" stroke-width="2"/>
+                    <circle cx="100" cy="100" r="80" fill="none" stroke="#b8860b" stroke-width="1" stroke-dasharray="2 4"/>
+                    <!-- Aquila bicipite -->
+                    <g fill="url(#goldGrad)" stroke="#3a1d0a" stroke-width="0.8">
+                        <path d="M100 55 L88 70 Q70 75 60 92 Q72 88 80 95 Q72 105 78 120 Q86 112 95 118 L100 140 L105 118 Q114 112 122 120 Q128 105 120 95 Q128 88 140 92 Q130 75 112 70 Z"/>
+                        <circle cx="88" cy="72" r="3"/>
+                        <circle cx="112" cy="72" r="3"/>
+                        <path d="M85 68 L82 60 L88 64 Z"/>
+                        <path d="M115 68 L118 60 L112 64 Z"/>
+                    </g>
+                    <text x="100" y="170" text-anchor="middle" font-family="Cinzel, serif" font-size="10" fill="#b8860b" letter-spacing="3">PUALIN ZEFI</text>
+                </svg>
+            </div>
+            <div class="preloader-bar"><span></span></div>
+            <p class="preloader-text">Custos Memoriae · Lezha</p>
+        </div>
+    </div>
+
+    <!-- ============ NAVIGATION ============ -->
+    <header id="main-header" class="main-header">
+        <nav class="navbar">
+            <a href="#hero" class="brand">
+                <span class="brand-mark">P·Z</span>
+                <span class="brand-name">Pualin Zefi</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#biografia">Biografia</a></li>
+                <li><a href="#lezha">Lezha & Skanderbeg</a></li>
+                <li><a href="#galleria">Galleria</a></li>
+                <li><a href="#pubblicazioni">Pubblicazioni</a></li>
+                <li><a href="#video">Documentari</a></li>
+                <li><a href="#contatti">Contatti</a></li>
+            </ul>
+            <div class="nav-tools">
+                <button id="themeToggle" class="theme-toggle" aria-label="Cambia tema">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button id="menuToggle" class="menu-toggle" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ============ HERO SECTION ============ -->
+    <section id="hero" class="hero">
+        <div class="hero-bg">
+            <div class="hero-bg-image"></div>
+            <canvas id="atmosphereCanvas" class="atmosphere-canvas"></canvas>
+            <div class="hero-overlay"></div>
+            <div class="hero-fog fog-1"></div>
+            <div class="hero-fog fog-2"></div>
+            <div class="hero-vignette"></div>
+        </div>
+
+        <div class="hero-flag" aria-hidden="true">
+            <svg viewBox="0 0 100 100" class="flag-svg">
+                <rect width="100" height="100" fill="#8b0000" opacity="0.4"/>
+                <g fill="#000" opacity="0.7" transform="translate(50 50)">
+                    <path d="M-15 -8 Q-10 -3 -5 -5 Q0 -10 5 -5 Q10 -3 15 -8 Q12 0 15 8 Q10 3 5 5 Q0 10 -5 5 Q-10 3 -15 8 Q-12 0 -15 -8 Z"/>
+                </g>
+            </svg>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-eyebrow">
+                <span class="line"></span>
+                <span class="text">MCDXLIV · LEZHA</span>
+                <span class="line"></span>
+            </div>
+            <h1 class="hero-title">
+                <span class="title-word" data-word="PUALIN">PUALIN</span>
+                <span class="title-word" data-word="ZEFI">ZEFI</span>
+            </h1>
+            <p class="hero-subtitle">
+                Storico di Lezha · Ricercatore · Custode della Memoria Albanese
+            </p>
+            <div class="hero-divider">
+                <span class="ornament">❦</span>
+            </div>
+            <div class="hero-buttons">
+                <a href="#biografia" class="btn btn-primary">
+                    <span>Scopri la storia</span>
+                    <i class="fa-solid fa-scroll"></i>
+                </a>
+                <a href="#pubblicazioni" class="btn btn-outline">
+                    <span>Le pubblicazioni</span>
+                    <i class="fa-solid fa-book-open"></i>
+                </a>
+                <a href="#contatti" class="btn btn-ghost">
+                    <span>Contatti</span>
+                    <i class="fa-solid fa-feather"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-scroll-indicator">
+            <span>Scorri</span>
+            <div class="scroll-line"></div>
+        </div>
+
+        <button id="audioToggle" class="audio-toggle" aria-label="Attiva musica ambient">
+            <i class="fa-solid fa-music"></i>
+        </button>
+    </section>
+
+    <!-- ============ BIOGRAFIA ============ -->
+    <section id="biografia" class="bio-section">
+        <div class="section-header reveal">
+            <span class="section-tag">Capitolo I</span>
+            <h2 class="section-title">La Vita di uno Storico</h2>
+            <p class="section-subtitle">Un'esistenza dedicata alla riscoperta della memoria di Lezha</p>
+        </div>
+
+        <div class="bio-container">
+            <div class="bio-portrait reveal-left">
+                <div class="portrait-frame">
+                    <div class="portrait-image" id="portraitImage"></div>
+                    <div class="portrait-ornament top-left"></div>
+                    <div class="portrait-ornament top-right"></div>
+                    <div class="portrait-ornament bottom-left"></div>
+                    <div class="portrait-ornament bottom-right"></div>
+                </div>
+                <div class="portrait-caption">
+                    <span class="caption-line">«La storia non è polvere — è fuoco»</span>
+                    <span class="caption-author">— Pualin Zefi</span>
+                </div>
+            </div>
+
+            <div class="bio-content reveal-right">
+                <h3 class="bio-name">Pualin Zefi</h3>
+                <p class="bio-role">Storico · Ricercatore · Conservatore della Cultura Lezhjana</p>
+
+                <div class="bio-text">
+                    <p>Nato e cresciuto a Lezha, all'ombra del castello che domina la valle del fiume Drin, <strong>Pualin Zefi</strong> ha dedicato la propria vita allo studio e alla custodia della memoria storica della sua terra.</p>
+
+                    <p>La sua ricerca si concentra sulla figura di <em>Gjergj Kastrioti Skanderbeg</em>, sulla <em>Lega di Alessio del 1444</em> e sulla storia medievale di Lezha come crocevia di civiltà tra Oriente e Occidente. Attraverso decenni di lavoro negli archivi veneziani, vaticani e ottomani, ha contribuito a riportare alla luce documenti, manoscritti e testimonianze che raccontano l'eroismo del popolo albanese.</p>
+
+                    <p>La sua opera è oggi un riferimento essenziale per chiunque voglia comprendere la profondità storica di Lezha e il ruolo cruciale che questa città ha avuto nella resistenza europea contro l'avanzata ottomana del XV secolo.</p>
+                </div>
+
+                <div class="bio-stats">
+                    <div class="stat">
+                        <span class="stat-number" data-target="40">0</span><span class="stat-suffix">+</span>
+                        <span class="stat-label">Anni di ricerca</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" data-target="15">0</span>
+                        <span class="stat-label">Pubblicazioni</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" data-target="200">0</span><span class="stat-suffix">+</span>
+                        <span class="stat-label">Conferenze</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="timeline-container">
+            <h3 class="timeline-title reveal">Il Cammino di una Vita</h3>
+            <div class="timeline">
+                <div class="timeline-line"></div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">1965</span>
+                        <h4>Nascita a Lezha</h4>
+                        <p>Pualin Zefi nasce nella storica città di Lezha, in una famiglia che custodisce da generazioni la tradizione orale albanese.</p>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">1989</span>
+                        <h4>Laurea in Storia Medievale</h4>
+                        <p>Si laurea all'Università di Tirana con una tesi sulla Lega di Alessio e sulla resistenza albanese del XV secolo.</p>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">1995</span>
+                        <h4>Primi Studi sul Castello di Lezha</h4>
+                        <p>Avvia un progetto di ricerca decennale sulle fortificazioni medievali di Lezha e sulla loro evoluzione storica.</p>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">2005</span>
+                        <h4>Conservatore del Memoriale di Skanderbeg</h4>
+                        <p>Assume il ruolo di consulente storico per la conservazione del Memoriale di Skanderbeg presso la Chiesa di San Nicola.</p>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">2015</span>
+                        <h4>Riconoscimento Internazionale</h4>
+                        <p>Le sue ricerche ottengono visibilità internazionale, con collaborazioni con università italiane, austriache e turche.</p>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">2024</span>
+                        <h4>Custode della Memoria</h4>
+                        <p>Continua la sua opera di divulgazione, lezioni pubbliche e mentorship di giovani storici albanesi.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ LEZHA & SKANDERBEG ============ -->
+    <section id="lezha" class="lezha-section">
+        <div class="lezha-bg-layer parallax-bg"></div>
+        <div class="lezha-overlay"></div>
+
+        <div class="section-header reveal light">
+            <span class="section-tag">Capitolo II</span>
+            <h2 class="section-title">Lezha & Skanderbeg</h2>
+            <p class="section-subtitle">La città dove l'Albania si fece nazione</p>
+        </div>
+
+        <div class="lezha-quote reveal">
+            <i class="fa-solid fa-quote-left"></i>
+            <p>«Lezha non è solo una città — è il cuore antico dell'Albania. Qui, nel marzo del 1444, Gjergj Kastrioti riunì i principi albanesi e accese il fuoco della resistenza che brillò per venticinque anni.»</p>
+            <span class="quote-author">— dagli scritti di Pualin Zefi</span>
+        </div>
+
+        <!-- Storytelling cards -->
+        <div class="storytelling-grid">
+            <article class="story-card reveal">
+                <div class="card-icon"><i class="fa-solid fa-fort-awesome"></i></div>
+                <span class="card-era">III sec. a.C.</span>
+                <h3>Lissus, la Fortezza Illira</h3>
+                <p>Fondata dagli Illiri e poi rifondata dai Greci di Siracusa nel 385 a.C., Lezha — antica Lissus — fu un crocevia strategico del Mediterraneo, contesa tra Roma, Bisanzio e gli imperi del Nord.</p>
+            </article>
+
+            <article class="story-card reveal">
+                <div class="card-icon"><i class="fa-solid fa-chess-rook"></i></div>
+                <span class="card-era">1393</span>
+                <h3>Il Dominio Veneziano</h3>
+                <p>Lezha entra nei domini della Serenissima e diventa un porto fortificato di rilievo. I veneziani rinforzano il castello e lasciano un'impronta indelebile sull'architettura della città.</p>
+            </article>
+
+            <article class="story-card highlight reveal">
+                <div class="card-icon glow"><i class="fa-solid fa-khanda"></i></div>
+                <span class="card-era">2 Marzo 1444</span>
+                <h3>La Lega di Alessio</h3>
+                <p>Nella cattedrale di San Nicola, Gjergj Kastrioti Skanderbeg riunisce i principi albanesi — i Dukagjini, i Topia, gli Arianiti, i Muzaka — e fonda la <em>Lidhja e Lezhës</em>, l'alleanza che resisterà all'Impero Ottomano per 25 anni.</p>
+            </article>
+
+            <article class="story-card reveal">
+                <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <span class="card-era">1444 — 1468</span>
+                <h3>L'Era di Skanderbeg</h3>
+                <p>Per un quarto di secolo, Skanderbeg conduce una guerra epica contro Murad II e Maometto II. Lezha diventa il centro politico della resistenza albanese e il simbolo della libertà cristiana d'Europa.</p>
+            </article>
+
+            <article class="story-card reveal">
+                <div class="card-icon"><i class="fa-solid fa-cross"></i></div>
+                <span class="card-era">17 Gennaio 1468</span>
+                <h3>La Tomba dell'Eroe</h3>
+                <p>Skanderbeg muore a Lezha di malaria. Viene sepolto nella Chiesa di San Nicola, oggi <em>Memoriale di Skanderbeg</em>. Si racconta che i Turchi, prendendo la città, frantumarono le sue ossa per farne amuleti, credendo di acquisirne il coraggio.</p>
+            </article>
+
+            <article class="story-card reveal">
+                <div class="card-icon"><i class="fa-solid fa-mountain-sun"></i></div>
+                <span class="card-era">Oggi</span>
+                <h3>Il Castello di Lezha</h3>
+                <p>Arroccato sulla collina che domina la città, il castello veglia ancora sulla pianura del Drin. Le sue mura raccontano millenni di storia: illira, romana, bizantina, veneziana, ottomana e albanese.</p>
+            </article>
+        </div>
+
+        <!-- Mini timeline medievale -->
+        <div class="medieval-timeline reveal">
+            <div class="mt-track">
+                <div class="mt-point" data-year="385 a.C."><span>Fondazione di Lissus</span></div>
+                <div class="mt-point" data-year="1393"><span>Dominio Veneziano</span></div>
+                <div class="mt-point major" data-year="1444"><span>Lega di Alessio</span></div>
+                <div class="mt-point" data-year="1468"><span>Morte di Skanderbeg</span></div>
+                <div class="mt-point" data-year="1912"><span>Indipendenza Albanese</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ GALLERIA STORICA ============ -->
+    <section id="galleria" class="gallery-section">
+        <div class="section-header reveal">
+            <span class="section-tag">Capitolo III</span>
+            <h2 class="section-title">Galleria Storica</h2>
+            <p class="section-subtitle">Immagini, manoscritti e luoghi della memoria</p>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- Le card vengono iniettate da JS -->
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" aria-hidden="true">
+        <button class="lightbox-close" aria-label="Chiudi"><i class="fa-solid fa-xmark"></i></button>
+        <button class="lightbox-prev" aria-label="Precedente"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="lightbox-next" aria-label="Successivo"><i class="fa-solid fa-chevron-right"></i></button>
+        <div class="lightbox-content">
+            <div class="lightbox-image-wrap"><div class="lightbox-image" id="lightboxImage"></div></div>
+            <div class="lightbox-caption">
+                <h3 id="lightboxTitle"></h3>
+                <p id="lightboxDesc"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ PUBBLICAZIONI ============ -->
+    <section id="pubblicazioni" class="publications-section">
+        <div class="section-header reveal">
+            <span class="section-tag">Capitolo IV</span>
+            <h2 class="section-title">Pubblicazioni & Ricerche</h2>
+            <p class="section-subtitle">L'archivio digitale degli studi di Pualin Zefi</p>
+        </div>
+
+        <div class="publications-filters reveal">
+            <button class="filter-btn active" data-filter="all">Tutti</button>
+            <button class="filter-btn" data-filter="libro">Libri</button>
+            <button class="filter-btn" data-filter="articolo">Articoli</button>
+            <button class="filter-btn" data-filter="ricerca">Ricerche</button>
+            <button class="filter-btn" data-filter="documento">Documenti</button>
+        </div>
+
+        <div class="publications-grid" id="publicationsGrid">
+            <!-- Inserite da JS -->
+            <div class="pub-skeleton"></div>
+        </div>
+    </section>
+
+    <!-- ============ VIDEO & DOCUMENTARI ============ -->
+    <section id="video" class="video-section">
+        <div class="video-bg-overlay"></div>
+        <div class="section-header reveal light">
+            <span class="section-tag">Capitolo V</span>
+            <h2 class="section-title">Video & Documentari</h2>
+            <p class="section-subtitle">Interviste, conferenze e racconti cinematografici</p>
+        </div>
+
+        <div class="video-grid">
+            <div class="video-card featured reveal">
+                <div class="video-thumb">
+                    <iframe src="https://www.youtube.com/embed/o3FuyrAlf3E?rel=0" title="Skanderbeg documentario" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                </div>
+                <div class="video-info">
+                    <span class="video-tag">Documentario</span>
+                    <h3>Skanderbeg e la Lega di Alessio</h3>
+                    <p>Un viaggio nelle origini dell'unità albanese, dalla fortezza di Lezha alle pianure dove si combatté la resistenza ottomana.</p>
+                </div>
+            </div>
+
+            <div class="video-card reveal">
+                <div class="video-thumb">
+                    <iframe src="https://www.youtube.com/embed/EngW7tLk6R8?rel=0" title="Castello di Lezha" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                </div>
+                <div class="video-info">
+                    <span class="video-tag">Intervista</span>
+                    <h3>Il Castello di Lezha</h3>
+                    <p>Pualin Zefi racconta la storia millenaria della fortezza che domina la città.</p>
+                </div>
+            </div>
+
+            <div class="video-card reveal">
+                <div class="video-thumb">
+                    <iframe src="https://www.youtube.com/embed/Lzd3-WJfCwc?rel=0" title="Memoriale di Skanderbeg" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                </div>
+                <div class="video-info">
+                    <span class="video-tag">Conferenza</span>
+                    <h3>Il Memoriale di San Nicola</h3>
+                    <p>Storia della chiesa di San Nicola e del sepolcro di Gjergj Kastrioti Skanderbeg.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ CONTATTI ============ -->
+    <section id="contatti" class="contact-section">
+        <div class="section-header reveal">
+            <span class="section-tag">Capitolo VI</span>
+            <h2 class="section-title">Contatti</h2>
+            <p class="section-subtitle">Per ricerche, conferenze, collaborazioni</p>
+        </div>
+
+        <div class="contact-container">
+            <div class="contact-info reveal-left">
+                <div class="info-item">
+                    <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+                    <div>
+                        <h4>Email</h4>
+                        <a href="mailto:pualin.zefi@lezha-historia.al">pualin.zefi@lezha-historia.al</a>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <div>
+                        <h4>Lezha, Albania</h4>
+                        <span>Sotto le mura del Castello di Lezha</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                    <div>
+                        <h4>WhatsApp</h4>
+                        <a href="https://wa.me/355000000000" target="_blank" rel="noopener">+355 (00) 000 000</a>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+
+                <!-- Mappa di Lezha -->
+                <div class="map-wrap">
+                    <iframe
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=19.62%2C41.77%2C19.69%2C41.80&amp;layer=mapnik&amp;marker=41.7836%2C19.6447"
+                        loading="lazy"
+                        title="Mappa di Lezha"></iframe>
+                </div>
+            </div>
+
+            <form id="contactForm" class="contact-form reveal-right" novalidate>
+                <h3 class="form-title">Scrivimi un messaggio</h3>
+                <p class="form-subtitle">Risponderò personalmente a ogni richiesta.</p>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nome">Nome</label>
+                        <input type="text" id="nome" name="nome" required placeholder="Il tuo nome">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required placeholder="email@dominio.it">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="oggetto">Oggetto</label>
+                    <input type="text" id="oggetto" name="oggetto" required placeholder="Motivo del contatto">
+                </div>
+
+                <div class="form-group">
+                    <label for="messaggio">Messaggio</label>
+                    <textarea id="messaggio" name="messaggio" rows="6" required placeholder="Scrivi qui il tuo messaggio..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary form-submit">
+                    <span>Invia messaggio</span>
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+
+                <div id="formStatus" class="form-status"></div>
+            </form>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-crest">
+                    <svg viewBox="0 0 100 100" class="mini-crest">
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="#b8860b" stroke-width="1.5"/>
+                        <text x="50" y="56" text-anchor="middle" font-family="Cinzel" font-size="20" fill="#b8860b" font-weight="700">PZ</text>
+                    </svg>
+                </div>
+                <h3>Pualin Zefi</h3>
+                <p>Custode della memoria di Lezha</p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Navigazione</h4>
+                <a href="#biografia">Biografia</a>
+                <a href="#lezha">Lezha & Skanderbeg</a>
+                <a href="#galleria">Galleria</a>
+                <a href="#pubblicazioni">Pubblicazioni</a>
+                <a href="#video">Documentari</a>
+                <a href="#contatti">Contatti</a>
+            </div>
+
+            <div class="footer-quote">
+                <i class="fa-solid fa-quote-left"></i>
+                <p>«Chi dimentica la propria storia è condannato a perdere la propria identità.»</p>
+                <span>— Pualin Zefi</span>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© <span id="currentYear"></span> Pualin Zefi · Tutti i diritti riservati · Lezha, Albania 🇦🇱</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp floating -->
+    <a href="https://wa.me/355000000000" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contatta su WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Back to top -->
+    <button id="backToTop" class="back-to-top" aria-label="Torna in cima">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
