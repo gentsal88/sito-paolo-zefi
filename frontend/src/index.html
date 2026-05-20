@@ -11,6 +11,19 @@
     <!-- Google Fonts preload -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Apply stored or system theme before Angular boot to avoid flicker -->
+    <script>
+      (function() {
+        try {
+          var stored = localStorage.getItem('pz-theme') || localStorage.getItem('theme');
+          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var theme = stored || (prefersDark ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {
+          // noop
+        }
+      })();
+    </script>
   </head>
   <body>
     <app-root></app-root>

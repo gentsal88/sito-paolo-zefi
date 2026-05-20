@@ -63,6 +63,7 @@
       "chapter": "Capitolo I",
       "headerTitle": "La Vita di uno Storico",
       "headerSubtitle": "Un'esistenza dedicata alla riscoperta della memoria di Lezha",
+      "timelineTitle": "Il Cammino di una Vita",
       "title": "Biografia",
       "description": "Scopri il percorso di Paulin Zefi",
       "subtitle": "Quarant'anni di ricerca, passione e dedizione alla memoria",
@@ -75,6 +76,7 @@
       "conferences": "Conferenze"
     },
     "lezha": {
+      "chapter": "Capitolo II",
       "title": "Lezha",
       "description": "Esplora la storia e la cultura di Lezha",
       "subtitle": "Tremila anni di storia, due secoli di gloria, un destino glorioso",
@@ -82,14 +84,17 @@
       "quote_author": "— Paulin Zefi"
     },
     "galleria": {
+      "chapter": "Capitolo III",
       "title": "Galleria",
       "description": "Sfoglia la nostra galleria fotografica"
     },
     "pubblicazioni": {
+      "chapter": "Capitolo IV",
       "title": "Pubblicazioni",
       "description": "Leggi le pubblicazioni di Paulin Zefi"
     },
     "video": {
+      "chapter": "Capitolo V",
       "title": "Video",
       "description": "Guarda la nostra collezione di video"
     },
@@ -101,6 +106,7 @@
       "scroll": "Scorri"
     },
     "contatti": {
+      "chapter": "Capitolo VI",
       "title": "Contatti",
       "description": "Mettiti in contatto con noi",
       "email": "Email",

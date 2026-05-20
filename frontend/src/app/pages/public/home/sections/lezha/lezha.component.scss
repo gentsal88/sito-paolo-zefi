@@ -343,3 +343,118 @@
     transform: scale(1);
   }
 }
+
+/* ---- Medieval mini-timeline ---- */
+.medieval-timeline {
+  margin: 60px auto 0;
+  max-width: 1200px;
+  padding: 20px 10px;
+  position: relative;
+  z-index: 2;
+}
+
+.mt-track {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 12px;
+  border-radius: 12px;
+  position: relative;
+}
+
+.mt-point {
+  flex: 0 0 auto;
+  display: block;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  min-width: 160px;
+  border-radius: 8px;
+  background: transparent;
+  color: #e8dcc4;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.98rem;
+  line-height: 1.2;
+  text-align: center;
+  position: relative;
+}
+
+.mt-track::before {
+  content: '';
+  position: absolute;
+  left: 2%;
+  right: 2%;
+  top: 50%;
+  height: 2px;
+  background: linear-gradient(90deg,#b8860b,#b8860b);
+  transform: translateY(-50%);
+  opacity: 0.18;
+  z-index: 1;
+}
+
+.mt-point::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #b8860b;
+  background: transparent;
+  z-index: 2;
+  transition: all .25s ease;
+}
+
+.mt-point::after {
+  content: attr(data-year);
+  position: absolute;
+  top: -26px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  color: #b8860b;
+  opacity: 0.95;
+  z-index: 2;
+}
+
+.mt-point span {
+  display: block;
+  margin-top: 36px;
+  color: #c9bfa8;
+  z-index: 2;
+}
+
+.mt-point:hover::before {
+  transform: translate(-50%, -50%) scale(1.6);
+  background: #b8860b;
+  box-shadow: 0 0 30px rgba(184,134,11,0.6);
+  border-color: #b8860b;
+}
+
+.mt-point:hover span {
+  margin-top: 30px;
+  background: #b8860b;
+  color: #0a0908;
+  padding: 6px 8px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+/* emphasize the central point (third item) */
+.mt-point:nth-child(3)::before {
+  width: 28px;
+  height: 28px;
+  background: #b8860b;
+  box-shadow: 0 0 50px rgba(184,134,11,0.6);
+  border-color: #b8860b;
+}
+
+@media (max-width: 768px) {
+  .mt-track { gap: 14px; }
+  .mt-point { min-width: 120px; font-size: 0.95rem; }
+}
+

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { ContentService, Biography, TimelineItem } from '@core/services/content.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-biografia',
@@ -15,27 +16,45 @@ export class BiografiaComponent implements OnInit {
   portraitUrl = 'assets/images/paolo-id.png';
   stats: any[] = [];
 
-  constructor(private contentService: ContentService) {}
+  constructor(private contentService: ContentService, private translate: TranslateService) {}
 
   ngOnInit() {
     this.contentService.getBiography().subscribe({
       next: (bio: Biography) => {
         this.portraitUrl = bio.portraitUrl;
-        this.timelineItems = bio.timelineItems;
+        const items = (bio.timelineItems && bio.timelineItems.length) ? bio.timelineItems : this.getLocaleFallback();
+        this.timelineItems = items;
         this.stats = bio.stats;
       },
-      error: (err: any) => console.error('Error loading biography:', err),
+      error: (err: any) => {
+        console.error('Error loading biography:', err);
+        this.timelineItems = this.getLocaleFallback();
+      },
     });
   }
 
+  private getLocaleFallback(): TimelineItem[] {
+    const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'it';
+    return lang.startsWith('en') ? this.englishFallbackTimelineItems : this.fallbackTimelineItems;
+  }
+
   // Fallback data
-  fallbackTimelineItems = [
-    { year: '1965', title: 'Nascita', description: 'Paulin Zefi nasce a Lezha' },
-    { year: '1989', title: 'Laurea', description: 'Si laurea in Storia Medievale all\'Università di Tirana' },
-    { year: '1995', title: 'Primi Studi', description: 'Pubblica i primi studi sui manoscritti della Lega di Alessio' },
-    { year: '2005', title: 'Conservatore', description: 'Diventa Conservatore del Patrimonio Storico di Lezha' },
-    { year: '2015', title: 'Riconoscimento', description: 'Riceve il riconoscimento internazionale per i suoi studi' },
-    { year: '2024', title: 'Custode della Memoria', description: 'Dirige il progetto di conservazione digitale della memoria albanese' }
+  fallbackTimelineItems: TimelineItem[] = [
+    { id: 't1', year: '1965', title: 'Nascita a Lezha', description: 'Paulin Zefi nasce nella storica città di Lezha, in una famiglia che custodisce da generazioni la tradizione orale albanese.' },
+    { id: 't2', year: '1989', title: 'Laurea in Storia Medievale', description: 'Si laurea all\'Università di Tirana con una tesi sulla Lega di Alessio e sulla resistenza albanese del XV secolo.' },
+    { id: 't3', year: '1995', title: 'Primi Studi sul Castello di Lezha', description: 'Avvia un progetto di ricerca decennale sulle fortificazioni medievali di Lezha e sulla loro evoluzione storica.' },
+    { id: 't4', year: '2005', title: 'Conservatore del Memoriale di Skanderbeg', description: 'Assume il ruolo di consulente storico per la conservazione del Memoriale di Skanderbeg presso la Chiesa di San Nicola.' },
+    { id: 't5', year: '2015', title: 'Riconoscimento Internazionale', description: 'Le sue ricerche ottengono visibilità internazionale, con collaborazioni con università italiane, austriache e turche.' },
+    { id: 't6', year: '2024', title: 'Custode della Memoria', description: 'Continua la sua opera di divulgazione, lezioni pubbliche e mentorship di giovani storici albanesi.' }
+  ];
+
+  englishFallbackTimelineItems: TimelineItem[] = [
+    { id: 't1', year: '1965', title: 'Birth in Lezha', description: 'Paulin Zefi is born in the historic town of Lezha, into a family that has preserved oral traditions for generations.' },
+    { id: 't2', year: '1989', title: 'Degree in Medieval History', description: 'He graduates from the University of Tirana with a thesis on the League of Alessio and the 15th-century Albanian resistance.' },
+    { id: 't3', year: '1995', title: 'Early Studies on Lezha Castle', description: 'He begins a decade-long research project on Lezha\'s medieval fortifications and their historical evolution.' },
+    { id: 't4', year: '2005', title: 'Curator of the Skanderbeg Memorial', description: 'He takes on the role of historical consultant for the conservation of the Skanderbeg Memorial at the Church of Saint Nicholas.' },
+    { id: 't5', year: '2015', title: 'International Recognition', description: 'His research gains international visibility, with collaborations across Italian, Austrian and Turkish universities.' },
+    { id: 't6', year: '2024', title: 'Keeper of Memory', description: 'He continues his outreach work, public lectures and mentorship of young Albanian historians.' }
   ];
 }
 

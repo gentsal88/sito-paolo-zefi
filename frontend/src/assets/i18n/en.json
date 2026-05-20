@@ -63,6 +63,7 @@
       "chapter": "Chapter I",
       "headerTitle": "The Life of a Historian",
       "headerSubtitle": "A life dedicated to rediscovering the memory of Lezha",
+      "timelineTitle": "The Journey of a Life",
       "title": "Biography",
       "description": "Learn more about Paulin Zefi's journey",
       "subtitle": "Forty years of research, passion and dedication to memory",
@@ -75,6 +76,7 @@
       "conferences": "Conferences"
     },
     "lezha": {
+      "chapter": "Chapter II",
       "title": "Lezha",
       "description": "Explore Lezha's history and culture",
       "subtitle": "Three thousand years of history, two centuries of glory, a glorious destiny",
@@ -82,14 +84,17 @@
       "quote_author": "— Paulin Zefi"
     },
     "galleria": {
+      "chapter": "Chapter III",
       "title": "Gallery",
       "description": "Browse our photo gallery"
     },
     "pubblicazioni": {
+      "chapter": "Chapter IV",
       "title": "Publications",
       "description": "Read Paulin Zefi's publications"
     },
     "video": {
+      "chapter": "Chapter V",
       "title": "Videos",
       "description": "Watch our video collection"
     },
@@ -101,6 +106,7 @@
       "scroll": "Scroll"
     },
     "contatti": {
+      "chapter": "Chapter VI",
       "title": "Contacts",
       "description": "Get in touch with us",
       "email": "Email",

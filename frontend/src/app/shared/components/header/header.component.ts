@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { LanguageSwitcherComponent } from '../language-switcher/language-switcher.component';
+import { ThemeService } from '@core/services/theme.service';
 
 interface NavLink {
   label: string;
@@ -20,7 +21,7 @@ interface NavLink {
 export class HeaderComponent implements OnInit {
   isScrolled = signal(false);
   menuOpen = signal(false);
-  isDarkTheme = signal(this.getTheme() === 'dark');
+  isDarkTheme = signal(false);
 
   navLinks: NavLink[] = [
     { label: '', i18nKey: 'header.biografia', href: '#biografia' },
@@ -31,13 +32,15 @@ export class HeaderComponent implements OnInit {
     { label: '', i18nKey: 'header.contatti', href: '#contatti' },
   ];
 
-  constructor(private translate: TranslateService) {}
+  constructor(private translate: TranslateService, private theme: ThemeService) {}
 
   ngOnInit(): void {
     this.updateNavLabels();
     this.translate.onLangChange.subscribe(() => {
       this.updateNavLabels();
     });
+    // initialize theme state from ThemeService
+    this.isDarkTheme.set(this.theme.isDark());
   }
 
   private updateNavLabels(): void {
@@ -54,10 +57,8 @@ export class HeaderComponent implements OnInit {
   }
 
   toggleTheme() {
-    const newTheme = this.isDarkTheme() ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    this.isDarkTheme.set(newTheme === 'dark');
+    this.theme.toggle();
+    this.isDarkTheme.set(this.theme.isDark());
   }
 
   toggleMenu() {
@@ -73,6 +74,15 @@ export class HeaderComponent implements OnInit {
   }
 
   private getTheme(): string {
-    return localStorage.getItem('theme') || 'dark';
+    try {
+      const stored = localStorage.getItem('pz-theme') || localStorage.getItem('theme');
+      if (stored) return stored;
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
+      }
+      return 'light';
+    } catch (e) {
+      return 'dark';
+    }
   }
 }

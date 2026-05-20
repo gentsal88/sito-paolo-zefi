@@ -76,6 +76,7 @@
     },
     "lezha": {
       "title": "Lezha",
+      "chapter": "Capítulo II",
       "description": "Explora la historia y cultura de Lezha",
       "subtitle": "Tres mil años de historia, dos siglos de gloria, un destino glorioso",
       "quote": "Lezha no es solo una ciudad, es el corazón de la resistencia albanesa contra la opresión otomana.",
@@ -83,14 +84,17 @@
     },
     "galleria": {
       "title": "Galería",
+      "chapter": "Capítulo III",
       "description": "Explora nuestra galería de fotos"
     },
     "pubblicazioni": {
       "title": "Publicaciones",
+      "chapter": "Capítulo IV",
       "description": "Lee las publicaciones de Paulin Zefi"
     },
     "video": {
       "title": "Vídeos",
+      "chapter": "Capítulo V",
       "description": "Mira nuestra colección de vídeos"
     },
     "hero": {
@@ -102,6 +106,7 @@
     },
     "contatti": {
       "title": "Contactos",
+      "chapter": "Capítulo VI",
       "description": "Ponte en contacto con nosotros",
       "email": "Correo electrónico",
       "phone": "Teléfono",

@@ -71,7 +71,7 @@
     </div>
   </div>
 
-  <button class="audio-toggle" [class.playing]="audioPlaying" (click)="toggleAudio()" aria-label="Toggle audio">
-    <i [class]="audioPlaying ? 'fa-solid fa-volume-high' : 'fa-solid fa-music'"></i>
+  <button class="audio-toggle" [class.playing]="audio.isPlaying()" (click)="toggleAudio()" aria-label="Toggle audio">
+    <i [class]="audio.isPlaying() ? 'fa-solid fa-volume-high' : 'fa-solid fa-music'"></i>
   </button>
 </section>

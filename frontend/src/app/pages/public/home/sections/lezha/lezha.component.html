@@ -1,6 +1,6 @@
 <section id="lezha" class="lezha-section">
   <div class="section-header reveal">
-    <span class="section-tag">{{ 'sections.lezha.title' | translate }}</span>
+    <span class="section-tag">{{ 'sections.lezha.chapter' | translate }}</span>
     <h2 class="section-title">{{ 'sections.lezha.title' | translate }}</h2>
     <p class="section-subtitle">{{ 'sections.lezha.subtitle' | translate }}</p>
   </div>
@@ -19,6 +19,13 @@
       <span class="card-era">{{ story.era }}</span>
       <h3>{{ story.title }}</h3>
       <p>{{ story.description }}</p>
+    </div>
+  </div>
+
+  <!-- Medieval mini-timeline (from index.html) -->
+  <div class="medieval-timeline reveal">
+    <div class="mt-track">
+      <div class="mt-point" *ngFor="let p of timelinePoints" [attr.data-year]="p.year"><span>{{ p.label }}</span></div>
     </div>
   </div>
 </section>

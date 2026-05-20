@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal, computed } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject, tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 interface LoginRequest {
   email: string;
@@ -30,23 +30,23 @@ export class AuthService {
   private tokenKey = 'auth_token';
   private userKey = 'user';
 
-  private currentUserSubject = new BehaviorSubject<any>(null);
-  public currentUser$ = this.currentUserSubject.asObservable();
-
-  private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
-  public isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
+  // Signals for modern reactive state
+  private token = signal<string | null>(null);
+  private user = signal<any>(null);
+  public isAuthenticatedSignal = computed(() => !!this.token());
 
   constructor(private http: HttpClient) {
     this.loadStoredAuth();
   }
 
   private loadStoredAuth(): void {
-    const token = this.getToken();
-    const user = this.getUser();
-
-    if (token && user) {
-      this.currentUserSubject.next(user);
-      this.isAuthenticatedSubject.next(true);
+    try {
+      const token = localStorage.getItem(this.tokenKey);
+      const userStr = localStorage.getItem(this.userKey);
+      if (token) this.token.set(token);
+      if (userStr) this.user.set(JSON.parse(userStr));
+    } catch (e) {
+      // ignore
     }
   }
 
@@ -55,8 +55,6 @@ export class AuthService {
       tap((response) => {
         this.setToken(response.access_token);
         this.setUser(response.user);
-        this.currentUserSubject.next(response.user);
-        this.isAuthenticatedSubject.next(true);
       })
     );
   }
@@ -66,27 +64,34 @@ export class AuthService {
   }
 
   logout(): void {
-    localStorage.removeItem(this.tokenKey);
-    localStorage.removeItem(this.userKey);
-    this.currentUserSubject.next(null);
-    this.isAuthenticatedSubject.next(false);
+    try {
+      localStorage.removeItem(this.tokenKey);
+      localStorage.removeItem(this.userKey);
+    } catch (e) {}
+    this.token.set(null);
+    this.user.set(null);
   }
 
   getToken(): string | null {
-    return localStorage.getItem(this.tokenKey);
+    return this.token();
   }
 
   setToken(token: string): void {
-    localStorage.setItem(this.tokenKey, token);
+    try {
+      localStorage.setItem(this.tokenKey, token);
+    } catch (e) {}
+    this.token.set(token);
   }
 
   getUser(): any {
-    const userStr = localStorage.getItem(this.userKey);
-    return userStr ? JSON.parse(userStr) : null;
+    return this.user();
   }
 
   setUser(user: any): void {
-    localStorage.setItem(this.userKey, JSON.stringify(user));
+    try {
+      localStorage.setItem(this.userKey, JSON.stringify(user));
+    } catch (e) {}
+    this.user.set(user);
   }
 
   isAuthenticated(): boolean {
@@ -94,7 +99,7 @@ export class AuthService {
   }
 
   hasRole(role: string): boolean {
-    const user = this.getUser();
-    return user && user.role === role;
+    const u = this.getUser();
+    return !!(u && u.role === role);
   }
 }

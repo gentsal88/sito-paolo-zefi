@@ -876,27 +876,25 @@ section {
     position: absolute;
     width: 18px;
     height: 18px;
-    background: var(--color-gold);
-    border: 3px solid var(--color-bg);
+    background: rgba(212,169,58,0.95);
+    border: none;
     border-radius: 50%;
     top: 40px;
-    box-shadow: 0 0 20px var(--color-gold);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 .timeline-item:nth-child(odd) .timeline-dot { right: -10px; }
 .timeline-item:nth-child(even) .timeline-dot { left: -10px; }
 
 .timeline-content {
-    background: linear-gradient(135deg, rgba(28,24,21,0.9), rgba(20,17,15,0.9));
+    background: transparent;
     padding: 28px 30px;
-    border: 1px solid rgba(184,134,11,0.2);
+    border: none;
     position: relative;
-    backdrop-filter: blur(10px);
-    transition: all .4s;
+    backdrop-filter: none;
+    transition: transform .3s ease;
 }
 .timeline-content:hover {
-    border-color: var(--color-gold);
     transform: translateY(-3px);
-    box-shadow: var(--shadow-gold);
 }
 
 .timeline-year {
@@ -1110,7 +1108,7 @@ section {
     width: 24px;
     height: 24px;
     background: var(--color-bg);
-    border: 2px solid var(--color-gold);
+    border: none; /* remove gold outline */
     border-radius: 50%;
     cursor: pointer;
     transition: all .4s;
@@ -1144,7 +1142,7 @@ section {
     width: 32px;
     height: 32px;
     background: var(--color-gold);
-    box-shadow: 0 0 30px rgba(184,134,11,0.7);
+    box-shadow: 0 8px 24px rgba(184,134,11,0.25);
 }
 .mt-point:hover { transform: scale(1.4); background: var(--color-gold); }
 

@@ -7,6 +7,7 @@ import {
   Inject,
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { AudioService } from '@core/services/audio.service';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -37,12 +38,9 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
   private mouseMoveListener!: (e: MouseEvent) => void;
   private resizeListener!: () => void;
 
-  // Audio
-  private audioCtx: AudioContext | null = null;
-  private audioNodes: AudioNode[] = [];
-  audioPlaying = false;
+  // Audio handled by AudioService
 
-  constructor(@Inject(DOCUMENT) private document: Document) {}
+  constructor(@Inject(DOCUMENT) private document: Document, public audio: AudioService) {}
 
   ngAfterViewInit(): void {
     // Trigger title animation after short delay (mirrors preloader callback)
@@ -155,56 +153,9 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
 
   // ---- Audio ambient (Web Audio API, medieval drone) ----
   toggleAudio(): void {
-    if (!this.audioPlaying) {
-      this.startAudio();
-    } else {
-      this.stopAudio();
-    }
-    this.audioPlaying = !this.audioPlaying;
-  }
-
-  private startAudio(): void {
-    try {
-      this.audioCtx = new AudioContext();
-      const master = this.audioCtx.createGain();
-      master.gain.value = 0.12;
-      master.connect(this.audioCtx.destination);
-
-      [73.42, 110.00, 146.83, 220.00].forEach((freq, i) => {
-        const osc  = this.audioCtx!.createOscillator();
-        const gain = this.audioCtx!.createGain();
-        osc.type = i % 2 === 0 ? 'sine' : 'triangle';
-        osc.frequency.value = freq;
-        gain.gain.value = 0;
-        gain.gain.linearRampToValueAtTime(0.25 / (i + 1), this.audioCtx!.currentTime + 2);
-
-        const lfo     = this.audioCtx!.createOscillator();
-        const lfoGain = this.audioCtx!.createGain();
-        lfo.frequency.value = 0.1 + i * 0.05;
-        lfoGain.gain.value  = 0.5;
-        lfo.connect(lfoGain);
-        lfoGain.connect(osc.frequency);
-        lfo.start();
-
-        osc.connect(gain);
-        gain.connect(master);
-        osc.start();
-        this.audioNodes.push(osc, gain, lfo, lfoGain);
-      });
-      this.audioNodes.push(master);
-    } catch (e) {
-      console.warn('Audio non disponibile', e);
-    }
-  }
-
-  private stopAudio(): void {
-    this.audioNodes.forEach(n => {
-      try { (n as OscillatorNode).stop?.(); } catch (_) {}
-      try { n.disconnect(); } catch (_) {}
-    });
-    this.audioNodes = [];
-    this.audioCtx?.close();
-    this.audioCtx = null;
+    // Try to resume context if needed on first user gesture
+    this.audio.resumeIfSuspended();
+    this.audio.toggle();
   }
 
   ngOnDestroy(): void {
@@ -212,7 +163,8 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
     if (this.scrollListener) window.removeEventListener('scroll',    this.scrollListener);
     if (this.mouseMoveListener) window.removeEventListener('mousemove', this.mouseMoveListener);
     if (this.resizeListener)  window.removeEventListener('resize',    this.resizeListener);
-    this.stopAudio();
+    // ensure audio stopped when component destroyed
+    this.audio.stop();
   }
 }
 

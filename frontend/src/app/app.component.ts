@@ -3,6 +3,7 @@ import { DOCUMENT } from '@angular/common';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { LanguageService } from '@core/services/language.service';
+import { AudioService } from '@core/services/audio.service';
 import { FaviconService } from '@core/services/favicon.service';
 
 @Component({
@@ -29,6 +30,7 @@ export class AppComponent implements OnInit {
     private router: Router,
     private favicon: FaviconService,
     private renderer: Renderer2,
+    private audio: AudioService,
     @Inject(DOCUMENT) private document: Document
   ) {}
 
@@ -68,6 +70,47 @@ export class AppComponent implements OnInit {
       });
     }, 300);
 
+    // --- Stat counters: animate numbers when visible ---
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target as HTMLElement;
+          const target = parseInt(el.dataset['target'] || '0', 10) || 0;
+          const duration = 1200;
+          const start = performance.now();
+          const from = 0;
+          const tick = (now: number) => {
+            const t = Math.min(1, (now - start) / duration);
+            const val = Math.floor(from + (target - from) * t);
+            el.textContent = String(val);
+            if (t < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+          counterObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    setTimeout(() => {
+      this.document.querySelectorAll('.stat-number').forEach(el => counterObserver.observe(el));
+    }, 500);
+
+    // --- Cursor glow effect (desktop) ---
+    try {
+      if (window.matchMedia && window.matchMedia('(hover: hover)').matches && window.innerWidth > 1024) {
+        const glow = this.document.createElement('div');
+        glow.className = 'cursor-glow';
+        glow.style.cssText = `position:fixed;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(184,134,11,0.08) 0%,transparent 60%);pointer-events:none;z-index:2;transform:translate(-50%,-50%);transition:opacity 0.3s;mix-blend-mode:screen;`;
+        this.document.body.appendChild(glow);
+        this.document.addEventListener('mousemove', (e: MouseEvent) => {
+          glow.style.left = e.clientX + 'px';
+          glow.style.top = e.clientY + 'px';
+        });
+      }
+    } catch (e) {
+      // noop
+    }
+
     // --- Dynamic favicon for memorial pages ---
     this.router.events
       .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
@@ -79,6 +122,19 @@ export class AppComponent implements OnInit {
           this.favicon.resetFavicon();
         }
       });
+
+    // If user previously enabled audio, start on first user gesture
+    try {
+      if (this.audio && this.audio.isPlaying && this.audio.isPlaying()) {
+        const resume = () => {
+          try { this.audio.start(); } catch (e) {}
+          document.removeEventListener('pointerdown', resume as EventListener);
+        };
+        document.addEventListener('pointerdown', resume as EventListener, { passive: true });
+      }
+    } catch (e) {
+      // noop
+    }
   }
 }
 
