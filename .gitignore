@@ -7,3 +7,12 @@ dist/
 .idea
 *.log
 npm-debug.log*
+
+# Ignore nested node_modules, build caches and framework caches anywhere in the repo
+**/node_modules/
+**/dist/
+**/.angular/
+**/.angular/cache/
+**/.cache/
+**/.parcel-cache/
+yarn-error.log*

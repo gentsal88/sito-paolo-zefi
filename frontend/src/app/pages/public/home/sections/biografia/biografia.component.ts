@@ -12,7 +12,7 @@ import { ContentService, Biography, TimelineItem } from '@core/services/content.
 })
 export class BiografiaComponent implements OnInit {
   timelineItems: TimelineItem[] = [];
-  portraitUrl = '';
+  portraitUrl = 'assets/images/paolo-id.png';
   stats: any[] = [];
 
   constructor(private contentService: ContentService) {}

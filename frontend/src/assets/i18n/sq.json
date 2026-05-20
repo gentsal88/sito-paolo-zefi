@@ -45,8 +45,8 @@
     "error_server": "Gabim i serverit. Ju lutemi provoni përsëri më vonë."
   },
   "home": {
-    "title": "Mirësevini në Paulo Zefi",
-    "subtitle": "Zbuloni botën e Paulo Zefi",
+    "title": "Mirësevini në Paulin Zefi",
+    "subtitle": "Zbuloni botën e Paulin Zefi",
     "about": "Rreth",
     "learn_more": "Mëso më shumë"
   },
@@ -60,8 +60,11 @@
   },
   "sections": {
     "biografia": {
+      "chapter": "Kapitulli I",
+      "headerTitle": "Jeta e një Historiani",
+      "headerSubtitle": "Një jetë e përkushtuar për rivendosjen e kujtesës së Lezhës",
       "title": "Biografia",
-      "description": "Zbuloni rrugën e Paulo Zefi",
+      "description": "Zbuloni rrugën e Paulin Zefi",
       "subtitle": "Dyzet vjet kërkime, pasion dhe dedikesë ndaj kujtesës",
       "role": "Historjan, Kërkues, Ruajtës i Trashëgimisë Shqiptare",
       "intro": "Me më shumë se dyzet vjet të dedikuar kërkimit historik, Paulin Zefi është bërë një figurë referimi në studimin e historisë mesjetare shqiptare dhe, në veçanti, të qytetit të Lezhës. Përkushtimi i tij ka mundësuar ndriçimin e periudhave të errëta të historisë shqiptare.",
@@ -84,7 +87,7 @@
     },
     "pubblicazioni": {
       "title": "Publikime",
-      "description": "Lexoni publikimet e Paulo Zefi"
+      "description": "Lexoni publikimet e Paulin Zefi"
     },
     "video": {
       "title": "Videot",
@@ -112,7 +115,7 @@
     }
   },
   "footer": {
-    "copyright": "© 2026 Paulo Zefi. Të gjitha të drejtat të ruajtura.",
+    "copyright": "© 2026 Paulin Zefi. Të gjitha të drejtat të ruajtura.",
     "privacy": "Politika e Privatësisë",
     "terms": "Kushtet e Shërbimit",
     "contact": "Kontaktoni Ne",

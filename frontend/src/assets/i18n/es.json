@@ -45,8 +45,8 @@
     "error_server": "Error del servidor. Por favor, inténtelo más tarde."
   },
   "home": {
-    "title": "Bienvenido a Paulo Zefi",
-    "subtitle": "Descubre el mundo de Paulo Zefi",
+    "title": "Bienvenido a Paulin Zefi",
+    "subtitle": "Descubre el mundo de Paulin Zefi",
     "about": "Acerca de",
     "learn_more": "Aprende más"
   },
@@ -60,8 +60,11 @@
   },
   "sections": {
     "biografia": {
+      "chapter": "Capítulo I",
+      "headerTitle": "La Vida de un Historiador",
+      "headerSubtitle": "Una existencia dedicada al redescubrimiento de la memoria de Lezha",
       "title": "Biografía",
-      "description": "Descubre el viaje de Paulo Zefi",
+      "description": "Descubre el viaje de Paulin Zefi",
       "subtitle": "Cuarenta años de investigación, pasión y dedicación a la memoria",
       "role": "Historiador, Investigador, Guardián del Patrimonio Albanés",
       "intro": "Con más de cuarenta años dedicados a la investigación histórica, Paulin Zefi se ha convertido en una figura de referencia en el estudio de la historia medieval albanesa y, en particular, de la ciudad de Lezha. Su dedicación ha permitido arrojar luz sobre períodos oscuros de la historia albanesa.",
@@ -84,7 +87,7 @@
     },
     "pubblicazioni": {
       "title": "Publicaciones",
-      "description": "Lee las publicaciones de Paulo Zefi"
+      "description": "Lee las publicaciones de Paulin Zefi"
     },
     "video": {
       "title": "Vídeos",
@@ -112,7 +115,7 @@
     }
   },
   "footer": {
-    "copyright": "© 2026 Paulo Zefi. Todos los derechos reservados.",
+    "copyright": "© 2026 Paulin Zefi. Todos los derechos reservados.",
     "privacy": "Política de Privacidad",
     "terms": "Términos de Servicio",
     "contact": "Contáctenos",

@@ -1,11 +1,11 @@
 <section id="galleria" class="galleria-section">
-  <div class="section-header">
+  <div class="section-header reveal">
     <span class="section-tag">{{ 'sections.galleria.title' | translate }}</span>
     <h2 class="section-title">{{ 'sections.galleria.title' | translate }}</h2>
     <p class="section-subtitle">{{ 'sections.galleria.description' | translate }}</p>
   </div>
 
-  <div class="gallery-grid">
+  <div class="gallery-grid reveal">
     <div class="gallery-item" *ngFor="let item of galleryItems()" (click)="openLightbox(item)">
       <img [src]="item.image" [alt]="item.title" class="gallery-img">
       <div class="gallery-overlay">

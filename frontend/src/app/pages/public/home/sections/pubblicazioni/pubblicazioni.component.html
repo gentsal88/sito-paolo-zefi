@@ -1,18 +1,18 @@
 <section id="pubblicazioni" class="publications-section">
-  <div class="section-header">
+  <div class="section-header reveal">
     <span class="section-tag">{{ 'sections.pubblicazioni.title' | translate }}</span>
     <h2 class="section-title">{{ 'sections.pubblicazioni.title' | translate }}</h2>
     <p class="section-subtitle">{{ 'sections.pubblicazioni.description' | translate }}</p>
   </div>
 
-  <div class="publications-filters">
+  <div class="publications-filters reveal">
     <button [class.active]="filter === 'all'" (click)="filter = 'all'">Tutti</button>
     <button [class.active]="filter === 'libro'" (click)="filter = 'libro'">Libri</button>
     <button [class.active]="filter === 'articolo'" (click)="filter = 'articolo'">Articoli</button>
     <button [class.active]="filter === 'ricerca'" (click)="filter = 'ricerca'">Ricerche</button>
   </div>
 
-  <div class="publications-grid">
+  <div class="publications-grid reveal">
     <article class="pub-card" *ngFor="let pub of publications">
       <div class="pub-icon"><i [ngClass]="pub.icon"></i></div>
       <span class="pub-type">{{ pub.type }}</span>
