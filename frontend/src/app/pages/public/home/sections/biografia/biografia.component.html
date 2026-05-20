@@ -1,0 +1,56 @@
+<section id="biografia" class="biografia-section">
+  <div class="section-header">
+    <span class="section-tag">{{ 'sections.biografia.title' | translate }}</span>
+    <h2 class="section-title">{{ 'sections.biografia.title' | translate }}</h2>
+    <p class="section-subtitle">{{ 'sections.biografia.subtitle' | translate }}</p>
+  </div>
+
+  <div class="biografia-content">
+    <div class="biografia-portrait">
+      <div class="portrait-frame">
+        <img [src]="portraitUrl || 'https://via.placeholder.com/400x500'" alt="Pualin Zefi">
+        <div class="portrait-corner portrait-corner-tl"></div>
+        <div class="portrait-corner portrait-corner-tr"></div>
+        <div class="portrait-corner portrait-corner-bl"></div>
+        <div class="portrait-corner portrait-corner-br"></div>
+      </div>
+      <blockquote class="portrait-quote">«{{ 'sections.biografia.mission' | translate }}»</blockquote>
+    </div>
+
+    <div class="biografia-text">
+      <h3>Pualin Zefi</h3>
+      <p class="role">{{ 'sections.biografia.role' | translate }}</p>
+
+      <p>{{ 'sections.biografia.intro' | translate }}</p>
+
+      <p>{{ 'sections.biografia.archives' | translate }}</p>
+
+      <p>{{ 'sections.biografia.mission' | translate }}</p>
+
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-number">40+</span>
+          <span class="stat-label">{{ 'sections.biografia.years_research' | translate }}</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">15</span>
+          <span class="stat-label">{{ 'sections.biografia.publications' | translate }}</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">200+</span>
+          <span class="stat-label">{{ 'sections.biografia.conferences' | translate }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item" *ngFor="let item of timelineItems">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content" [attr.data-year]="item.year">
+        <h4>{{ item.title }}</h4>
+        <p>{{ item.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>

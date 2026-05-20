@@ -1,0 +1,49 @@
+<header class="header" [class.scrolled]="isScrolled()">
+  <div class="header-container">
+    <a href="#" class="logo">
+      <span class="logo-circle">P·Z</span>
+      <span class="logo-text">Pualin Zefi</span>
+    </a>
+
+    <nav class="nav-desktop">
+      <a *ngFor="let link of navLinks" [href]="link.href" (click)="closeMenu()">
+        {{ link.label }}
+      </a>
+      <a *ngIf="!isAdmin()" href="/login" class="login-link">
+        <i class="fa-solid fa-sign-in-alt"></i> {{ 'common.login' | translate }}
+      </a>
+      <a *ngIf="isAdmin()" href="/admin" class="admin-link">
+        <i class="fa-solid fa-cog"></i> {{ 'admin.profile' | translate }}
+      </a>
+    </nav>
+
+    <div class="header-actions">
+      <app-language-switcher></app-language-switcher>
+
+      <button class="theme-toggle" (click)="toggleTheme()" [attr.aria-label]="isDarkTheme() ? 'Light theme' : 'Dark theme'">
+        <i [ngClass]="isDarkTheme() ? 'fa-solid fa-sun' : 'fa-solid fa-moon'"></i>
+      </button>
+
+      <button class="menu-toggle" (click)="toggleMenu()" [class.active]="menuOpen()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+
+  <nav class="nav-mobile" [class.open]="menuOpen()">
+    <a *ngFor="let link of navLinks" [href]="link.href" (click)="closeMenu()">
+      {{ link.label }}
+    </a>
+    <a *ngIf="!isAdmin()" href="/login" (click)="closeMenu()">
+      <i class="fa-solid fa-sign-in-alt"></i> {{ 'common.login' | translate }}
+    </a>
+    <a *ngIf="isAdmin()" href="/admin" (click)="closeMenu()">
+      <i class="fa-solid fa-cog"></i> {{ 'admin.profile' | translate }}
+    </a>
+    <div class="mobile-language-switcher">
+      <app-language-switcher></app-language-switcher>
+    </div>
+  </nav>
+</header>

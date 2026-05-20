@@ -1,44 +1,50 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AuthService } from '@core/services/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TranslateModule],
   template: `
     <div class="login-container">
       <div class="login-card">
-        <h1>Admin Login</h1>
+        <h1>{{ 'login.title' | translate }}</h1>
+        <p class="subtitle">{{ 'login.description' | translate }}</p>
         <form (ngSubmit)="onLogin()">
           <div class="form-group">
-            <label for="email">Email:</label>
+            <label for="email">{{ 'common.email' | translate }}:</label>
             <input
               type="email"
               id="email"
               name="email"
               [(ngModel)]="email"
-              placeholder="admin@admin.com"
+              [placeholder]="'login.email_placeholder' | translate"
               required
             />
           </div>
 
           <div class="form-group">
-            <label for="password">Password:</label>
+            <label for="password">{{ 'common.password' | translate }}:</label>
             <input
               type="password"
               id="password"
               name="password"
               [(ngModel)]="password"
-              placeholder="admin123"
+              [placeholder]="'login.password_placeholder' | translate"
               required
             />
           </div>
 
           <button type="submit" [disabled]="isLoading()">
-            {{ isLoading() ? 'Logging in...' : 'Login' }}
+            @if (isLoading()) {
+              {{ 'login.logging_in' | translate }}
+            } @else {
+              {{ 'login.login_button' | translate }}
+            }
           </button>
 
           @if (errorMessage()) {
@@ -69,8 +75,15 @@ import { AuthService } from '@core/services/auth.service';
 
       h1 {
         text-align: center;
-        margin-bottom: 2rem;
+        margin-bottom: 0.5rem;
         color: #333;
+      }
+
+      .subtitle {
+        text-align: center;
+        color: #666;
+        font-size: 14px;
+        margin-bottom: 2rem;
       }
 
       .form-group {
@@ -134,7 +147,7 @@ import { AuthService } from '@core/services/auth.service';
     `,
   ],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   email = '';
   password = '';
   isLoading = signal(false);
@@ -142,12 +155,19 @@ export class LoginComponent {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private translate: TranslateService
   ) {}
+
+  ngOnInit(): void {
+    // Component initialized
+  }
 
   onLogin(): void {
     if (!this.email || !this.password) {
-      this.errorMessage.set('Please fill in all fields');
+      this.translate.get('validation.required').subscribe((text: string) => {
+        this.errorMessage.set(text);
+      });
       return;
     }
 
@@ -161,10 +181,12 @@ export class LoginComponent {
       },
       error: (error) => {
         this.isLoading.set(false);
-        this.errorMessage.set(
-          error.error?.message || 'Login failed. Please try again.'
-        );
+        const errorKey = error.error?.message ? 'login.error_invalid' : 'login.error_server';
+        this.translate.get(errorKey).subscribe((text: string) => {
+          this.errorMessage.set(text);
+        });
       },
     });
   }
 }
+

@@ -1,56 +1,57 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { AuthService } from '@core/services/auth.service';
 
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   template: `
     <div class="admin-container">
       <nav class="navbar">
-        <div class="navbar-brand">Admin Dashboard</div>
-        <button class="logout-btn" (click)="onLogout()">Logout</button>
+        <div class="navbar-brand">{{ 'admin.title' | translate }}</div>
+        <button class="logout-btn" (click)="onLogout()">{{ 'common.logout' | translate }}</button>
       </nav>
 
       <div class="admin-content">
         <header class="header">
-          <h1>Welcome, {{ currentUser()?.email }}!</h1>
-          <p class="role-badge">Role: {{ currentUser()?.role }}</p>
+          <h1>{{ 'home.welcome' | translate }}, {{ currentUser()?.email }}!</h1>
+          <p class="role-badge">{{ 'admin.profile' | translate }}: {{ currentUser()?.role }}</p>
         </header>
 
         <section class="dashboard-section">
-          <h2>Dashboard Overview</h2>
+          <h2>{{ 'admin.dashboard' | translate }}</h2>
           <div class="stats-grid">
             <div class="stat-card">
-              <h3>Users</h3>
+              <h3>{{ 'admin.users' | translate }}</h3>
               <p class="stat-number">1</p>
             </div>
             <div class="stat-card">
               <h3>Status</h3>
-              <p class="stat-number">🟢 Active</p>
+              <p class="stat-number">🟢 {{ 'common.success' | translate }}</p>
             </div>
             <div class="stat-card">
-              <h3>Last Login</h3>
+              <h3>{{ 'admin.profile' | translate }}</h3>
               <p class="stat-number">{{ getCurrentTime() }}</p>
             </div>
           </div>
         </section>
 
         <section class="dashboard-section">
-          <h2>User Information</h2>
+          <h2>{{ 'admin.profile' | translate }}</h2>
           <div class="user-info">
             <div class="info-row">
               <span class="label">ID:</span>
               <span class="value">{{ currentUser()?.id }}</span>
             </div>
             <div class="info-row">
-              <span class="label">Email:</span>
+              <span class="label">{{ 'common.email' | translate }}:</span>
               <span class="value">{{ currentUser()?.email }}</span>
             </div>
             <div class="info-row">
-              <span class="label">Role:</span>
+              <span class="label">{{ 'admin.profile' | translate }}:</span>
               <span class="value">{{ currentUser()?.role }}</span>
             </div>
           </div>

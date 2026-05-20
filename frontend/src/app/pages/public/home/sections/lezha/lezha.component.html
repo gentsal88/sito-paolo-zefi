@@ -1,0 +1,24 @@
+<section id="lezha" class="lezha-section">
+  <div class="section-header">
+    <span class="section-tag">{{ 'sections.lezha.title' | translate }}</span>
+    <h2 class="section-title">{{ 'sections.lezha.title' | translate }}</h2>
+    <p class="section-subtitle">{{ 'sections.lezha.subtitle' | translate }}</p>
+  </div>
+
+  <div class="lezha-quote">
+    <i class="fa-solid fa-quote-left"></i>
+    <p>«{{ 'sections.lezha.quote' | translate }}»</p>
+    <span>{{ 'sections.lezha.quote_author' | translate }}</span>
+  </div>
+
+  <div class="stories-grid">
+    <div class="story-card" *ngFor="let story of stories" [class.highlighted]="story.id === 3">
+      <div class="story-icon">
+        <i [ngClass]="story.icon"></i>
+      </div>
+      <span class="story-era">{{ story.era }}</span>
+      <h3>{{ story.title }}</h3>
+      <p>{{ story.description }}</p>
+    </div>
+  </div>
+</section>

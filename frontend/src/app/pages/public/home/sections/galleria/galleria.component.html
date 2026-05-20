@@ -1,0 +1,32 @@
+<section id="galleria" class="galleria-section">
+  <div class="section-header">
+    <span class="section-tag">{{ 'sections.galleria.title' | translate }}</span>
+    <h2 class="section-title">{{ 'sections.galleria.title' | translate }}</h2>
+    <p class="section-subtitle">{{ 'sections.galleria.description' | translate }}</p>
+  </div>
+
+  <div class="gallery-grid">
+    <div class="gallery-item" *ngFor="let item of galleryItems()" (click)="openLightbox(item)">
+      <img [src]="item.image" [alt]="item.title" class="gallery-img">
+      <div class="gallery-overlay">
+        <div class="gallery-info">
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lightbox" *ngIf="lightboxOpen()" (click)="closeLightbox()">
+    <div class="lightbox-content" (click)="$event.stopPropagation()">
+      <button class="lightbox-close" (click)="closeLightbox()">
+        <i class="fa-solid fa-times"></i>
+      </button>
+      <img [src]="selectedItem()?.image" [alt]="selectedItem()?.title">
+      <div class="lightbox-caption">
+        <h3>{{ selectedItem()?.title }}</h3>
+        <p>{{ selectedItem()?.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>

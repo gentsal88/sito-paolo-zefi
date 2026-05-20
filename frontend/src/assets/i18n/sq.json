@@ -1,0 +1,127 @@
+{
+  "common": {
+    "login": "Hyrja",
+    "logout": "Dil",
+    "dashboard": "Paneli i Kontrollit",
+    "username": "Emri i përdoruesit",
+    "email": "Email",
+    "password": "Fjalëkalimi",
+    "submit": "Dërgo",
+    "cancel": "Anulo",
+    "delete": "Fshi",
+    "edit": "Redakto",
+    "save": "Ruaj",
+    "loading": "Ngarkim në vazhdim...",
+    "error": "Gabim",
+    "success": "Sukses",
+    "warning": "Paralajmërim",
+    "info": "Informacion",
+    "close": "Mbyll",
+    "search": "Kërko",
+    "welcome": "Mirësevini",
+    "language": "Gjuha"
+  },
+  "header": {
+    "biografia": "Biografia",
+    "lezha": "Lezha",
+    "galleria": "Galeria",
+    "pubblicazioni": "Publikime",
+    "video": "Video",
+    "contatti": "Kontakte",
+    "admin": "Admin",
+    "theme": "Tema"
+  },
+  "login": {
+    "title": "Hyrja Admin",
+    "description": "Futni kredencialet tuaja për të hyrë në panelin e administrimit",
+    "email_placeholder": "admin@admin.com",
+    "password_placeholder": "Futni fjalëkalimin tuaj",
+    "login_button": "Hyj",
+    "logging_in": "Hyrja në vazhdim...",
+    "forgot_password": "Harruat fjalëkalimin?",
+    "no_account": "Nuk keni llogari?",
+    "error_invalid": "Email ose fjalëkalim i pavlefshëm",
+    "error_network": "Gabim në rrjet. Ju lutemi provoni përsëri.",
+    "error_server": "Gabim i serverit. Ju lutemi provoni përsëri më vonë."
+  },
+  "home": {
+    "title": "Mirësevini në Paulo Zefi",
+    "subtitle": "Zbuloni botën e Paulo Zefi",
+    "about": "Rreth",
+    "learn_more": "Mëso më shumë"
+  },
+  "admin": {
+    "title": "Paneli Admin",
+    "users": "Përdoruesit",
+    "settings": "Cilësimet",
+    "logout_button": "Dil",
+    "profile": "Profili",
+    "back_home": "Kthehu në Shtëpi"
+  },
+  "sections": {
+    "biografia": {
+      "title": "Biografia",
+      "description": "Zbuloni rrugën e Paulo Zefi",
+      "subtitle": "Dyzet vjet kërkime, pasion dhe dedikesë ndaj kujtesës",
+      "role": "Historjan, Kërkues, Ruajtës i Trashëgimisë Shqiptare",
+      "intro": "Me më shumë se dyzet vjet të dedikuar kërkimit historik, Pualin Zefi është bërë një figurë referimi në studimin e historisë mesjetare shqiptare dhe, në veçanti, të qytetit të Lezhës. Përkushtimi i tij ka mundësuar ndriçimin e periudhave të errëta të historisë shqiptare.",
+      "archives": "Përmes arkivave evropiane, manuskripteve të botuar dhe dëshmive gojore, ka rindërtuar kompleksitetin e ngjarjeve që shënuan Perandorinë Osmane dhe rezistencën shqiptare.",
+      "mission": "Mësioni i tij është i thjeshtë por i thellë: të ruajë kujtesën e Lezhës dhe ta kalojë atë brezave të ardhshëm, në mënyrë që ata mos të harrrojnë sakrificat dhe lavdinë e atyre që mbrojnë këtë tokë.",
+      "years_research": "Vjet Kërkimi",
+      "publications": "Publikime",
+      "conferences": "Konference"
+    },
+    "lezha": {
+      "title": "Lezha",
+      "description": "Eksploroni historinë dhe kulturën e Lezhës",
+      "subtitle": "Tremila vjet histori, dy shekuj lavdie, një fat i nderuar",
+      "quote": "Lezha nuk është vetëm një qytet, është zemra e rezistencës shqiptare kundër shtypjes osmane.",
+      "quote_author": "— Pualin Zefi"
+    },
+    "galleria": {
+      "title": "Galeria",
+      "description": "Shfletoni galerinë tonë të fotografive"
+    },
+    "pubblicazioni": {
+      "title": "Publikime",
+      "description": "Lexoni publikimet e Paulo Zefi"
+    },
+    "video": {
+      "title": "Videot",
+      "description": "Shikoni koleksionin tonë të videove"
+    },
+    "hero": {
+      "subtitle": "Historian i Lezhës · Kërkues · Ruajtës i Kujtesës Shqiptare",
+      "discover_story": "Zbulo historinë",
+      "publications": "Publikimet",
+      "contacts": "Kontakte",
+      "scroll": "Rrotullim"
+    },
+    "contatti": {
+      "title": "Kontakte",
+      "description": "Kontaktoni ne",
+      "email": "Email",
+      "phone": "Telefoni",
+      "address": "Adresa",
+      "send_message": "Dërgo Mesazh",
+      "form_name": "Emri",
+      "form_email": "Email",
+      "form_message": "Mesazh",
+      "message_sent": "Mesazhi u dërgua me sukses!",
+      "message_error": "Gabim në dërgimin e mesazhit. Ju lutemi provoni përsëri."
+    }
+  },
+  "footer": {
+    "copyright": "© 2026 Paulo Zefi. Të gjitha të drejtat të ruajtura.",
+    "privacy": "Politika e Privatësisë",
+    "terms": "Kushtet e Shërbimit",
+    "contact": "Kontaktoni Ne",
+    "social": "Na Ndiqni"
+  },
+  "validation": {
+    "required": "Ky fushë është i detyrueshëm",
+    "email_invalid": "Ju lutemi futni një email të vlefshëm",
+    "password_min": "Fjalëkalimi duhet të ketë të paktën 8 karaktere",
+    "password_match": "Fjalëkalimet nuk përputhen"
+  }
+}

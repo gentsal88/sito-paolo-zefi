@@ -1,0 +1,138 @@
+.publications-section {
+  padding: 120px 40px;
+  background: linear-gradient(135deg, #1c1815 0%, #14110f 100%);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.section-tag {
+  display: inline-block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  color: #b8860b;
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: #f4ead8;
+  margin-bottom: 20px;
+  letter-spacing: 4px;
+}
+
+.section-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  color: #c9bfa8;
+  font-style: italic;
+}
+
+.publications-filters {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
+
+  button {
+    padding: 10px 25px;
+    border: 1px solid rgba(184,134,11,0.3);
+    background: transparent;
+    color: #d8cfc0;
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+
+    &:hover,
+    &.active {
+      background: rgba(184,134,11,0.2);
+      border-color: #b8860b;
+      color: #d4a93a;
+    }
+  }
+}
+
+.publications-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.pub-card {
+  background: rgba(42,38,34,0.4);
+  border: 1px solid rgba(184,134,11,0.2);
+  padding: 40px;
+  transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  &:hover {
+    background: rgba(42,38,34,0.7);
+    border-color: #b8860b;
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(184,134,11,0.2);
+  }
+}
+
+.pub-icon {
+  font-size: 2.5rem;
+  color: #d4a93a;
+  margin-bottom: 20px;
+}
+
+.pub-type {
+  display: inline-block;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #b8860b;
+  background: rgba(184,134,11,0.15);
+  padding: 6px 12px;
+  margin-bottom: 15px;
+}
+
+.pub-card h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.2rem;
+  color: #f4ead8;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.pub-card p {
+  color: #c9bfa8;
+  line-height: 1.6;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+.pub-meta {
+  padding-top: 15px;
+  border-top: 1px solid rgba(184,134,11,0.1);
+}
+
+.pub-year {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  color: #9c948a;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+  .publications-section {
+    padding: 60px 20px;
+  }
+
+  .publications-grid {
+    grid-template-columns: 1fr;
+  }
+}

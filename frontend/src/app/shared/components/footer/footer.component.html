@@ -1,0 +1,54 @@
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-section footer-brand">
+      <div class="footer-logo">P·Z</div>
+      <h3>Pualin Zefi</h3>
+      <p>{{ 'sections.biografia.title' | translate }} · {{ 'sections.lezha.title' | translate }} · {{ 'sections.galleria.title' | translate }}</p>
+    </div>
+
+    <div class="footer-section footer-links">
+      <h4>{{ 'common.search' | translate }}</h4>
+      <ul>
+        <li><a href="#biografia">{{ 'header.biografia' | translate }}</a></li>
+        <li><a href="#lezha">{{ 'header.lezha' | translate }}</a></li>
+        <li><a href="#galleria">{{ 'header.galleria' | translate }}</a></li>
+        <li><a href="#pubblicazioni">{{ 'header.pubblicazioni' | translate }}</a></li>
+        <li><a href="#video">{{ 'header.video' | translate }}</a></li>
+        <li><a href="#contatti">{{ 'header.contatti' | translate }}</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section footer-quote">
+      <blockquote>
+        <p>«{{ 'sections.biografia.description' | translate }}»</p>
+      </blockquote>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; {{ currentYear }} Pualin Zefi. {{ 'footer.copyright' | translate }}</p>
+    <div class="social-icons">
+      <a href="https://facebook.com" target="_blank" rel="noopener">
+        <i class="fa-brands fa-facebook-f"></i>
+      </a>
+      <a href="https://instagram.com" target="_blank" rel="noopener">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+      <a href="https://linkedin.com" target="_blank" rel="noopener">
+        <i class="fa-brands fa-linkedin-in"></i>
+      </a>
+      <a href="https://youtube.com" target="_blank" rel="noopener">
+        <i class="fa-brands fa-youtube"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- Floating buttons -->
+  <a href="https://wa.me/355000000000" class="whatsapp-btn" target="_blank" rel="noopener" title="WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <a href="#" class="back-to-top" (click)="scrollToTop($event)" title="Torna su">
+    <i class="fa-solid fa-arrow-up"></i>
+  </a>
+</footer>

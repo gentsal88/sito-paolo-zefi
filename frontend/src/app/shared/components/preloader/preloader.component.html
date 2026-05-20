@@ -1,0 +1,47 @@
+<div class="preloader" [class.hidden]="isHidden()">
+  <div class="preloader-content">
+    <svg class="preloader-crest" viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="creatGradient" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" style="stop-color: #f4d27a; stop-opacity: 1" />
+          <stop offset="100%" style="stop-color: #5e3a0a; stop-opacity: 1" />
+        </radialGradient>
+      </defs>
+
+      <!-- Aquila bicefala albanese stilizzata -->
+      <circle cx="100" cy="100" r="90" fill="url(#creatGradient)" opacity="0.9" />
+      
+      <!-- Corona superiore -->
+      <path d="M 60 60 L 80 40 L 100 50 L 120 40 L 140 60" stroke="#d4a93a" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+
+      <!-- Teste sinistra -->
+      <circle cx="70" cy="90" r="25" fill="#d4a93a" />
+      <circle cx="60" cy="85" r="8" fill="#1a1208" />
+      <path d="M 50 90 L 30 95" stroke="#d4a93a" stroke-width="2" stroke-linecap="round" />
+
+      <!-- Testa destra -->
+      <circle cx="130" cy="90" r="25" fill="#d4a93a" />
+      <circle cx="140" cy="85" r="8" fill="#1a1208" />
+      <path d="M 150 90 L 170 95" stroke="#d4a93a" stroke-width="2" stroke-linecap="round" />
+
+      <!-- Ali -->
+      <path d="M 50 110 Q 30 100 20 130 Q 25 120 50 125" fill="#8b5a2b" />
+      <path d="M 150 110 Q 170 100 180 130 Q 175 120 150 125" fill="#8b5a2b" />
+
+      <!-- Scudo centrale -->
+      <rect x="80" y="140" width="40" height="50" rx="5" fill="#b8860b" />
+      <text x="100" y="175" font-family="Cinzel" font-size="18" font-weight="bold" text-anchor="middle" fill="#1a1208">Z</text>
+
+      <!-- Ornamenti -->
+      <circle cx="50" cy="70" r="3" fill="#f4d27a" />
+      <circle cx="150" cy="70" r="3" fill="#f4d27a" />
+    </svg>
+
+    <h1 class="preloader-title">Custos Memoriae</h1>
+    <p class="preloader-subtitle">Lezha</p>
+
+    <div class="progress-bar">
+      <div class="progress-fill"></div>
+    </div>
+  </div>
+</div>

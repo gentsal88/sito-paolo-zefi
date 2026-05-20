@@ -1,0 +1,127 @@
+{
+  "common": {
+    "login": "Login",
+    "logout": "Logout",
+    "dashboard": "Dashboard",
+    "username": "Username",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "save": "Save",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "warning": "Warning",
+    "info": "Info",
+    "close": "Close",
+    "search": "Search",
+    "welcome": "Welcome",
+    "language": "Language"
+  },
+  "header": {
+    "biografia": "Biography",
+    "lezha": "Lezha",
+    "galleria": "Gallery",
+    "pubblicazioni": "Publications",
+    "video": "Video",
+    "contatti": "Contacts",
+    "admin": "Admin",
+    "theme": "Theme"
+  },
+  "login": {
+    "title": "Admin Login",
+    "description": "Enter your credentials to access the admin panel",
+    "email_placeholder": "admin@admin.com",
+    "password_placeholder": "Enter your password",
+    "login_button": "Login",
+    "logging_in": "Logging in...",
+    "forgot_password": "Forgot password?",
+    "no_account": "Don't have an account?",
+    "error_invalid": "Invalid email or password",
+    "error_network": "Network error. Please try again.",
+    "error_server": "Server error. Please try again later."
+  },
+  "home": {
+    "title": "Welcome to Paulo Zefi",
+    "subtitle": "Discover the world of Paulo Zefi",
+    "about": "About",
+    "learn_more": "Learn More"
+  },
+  "admin": {
+    "title": "Admin Dashboard",
+    "users": "Users",
+    "settings": "Settings",
+    "logout_button": "Logout",
+    "profile": "Profile",
+    "back_home": "Back to Home"
+  },
+  "sections": {
+    "biografia": {
+      "title": "Biography",
+      "description": "Learn more about Paulo Zefi's journey",
+      "subtitle": "Forty years of research, passion and dedication to memory",
+      "role": "Historian, Researcher, Keeper of Albanian Heritage",
+      "intro": "With more than forty years dedicated to historical research, Pualin Zefi has become a reference figure in the study of medieval Albanian history and, in particular, the city of Lezha. His dedication has shed light on obscure periods of Albanian history.",
+      "archives": "Through European archives, unpublished manuscripts and oral testimonies, he has reconstructed the complexity of the events that marked the Ottoman Empire and Albanian resistance.",
+      "mission": "His mission is simple but profound: to preserve the memory of Lezha and pass it on to future generations, so that they do not forget the sacrifices and glory of those who defended this land.",
+      "years_research": "Years of Research",
+      "publications": "Publications",
+      "conferences": "Conferences"
+    },
+    "lezha": {
+      "title": "Lezha",
+      "description": "Explore Lezha's history and culture",
+      "subtitle": "Three thousand years of history, two centuries of glory, a glorious destiny",
+      "quote": "Lezha is not just a city, it is the heart of Albanian resistance against Ottoman oppression.",
+      "quote_author": "— Pualin Zefi"
+    },
+    "galleria": {
+      "title": "Gallery",
+      "description": "Browse our photo gallery"
+    },
+    "pubblicazioni": {
+      "title": "Publications",
+      "description": "Read Paulo Zefi's publications"
+    },
+    "video": {
+      "title": "Videos",
+      "description": "Watch our video collection"
+    },
+    "hero": {
+      "subtitle": "Historian of Lezha · Researcher · Keeper of Albanian Memory",
+      "discover_story": "Discover the story",
+      "publications": "Publications",
+      "contacts": "Contacts",
+      "scroll": "Scroll"
+    },
+    "contatti": {
+      "title": "Contacts",
+      "description": "Get in touch with us",
+      "email": "Email",
+      "phone": "Phone",
+      "address": "Address",
+      "send_message": "Send Message",
+      "form_name": "Name",
+      "form_email": "Email",
+      "form_message": "Message",
+      "message_sent": "Message sent successfully!",
+      "message_error": "Error sending message. Please try again."
+    }
+  },
+  "footer": {
+    "copyright": "© 2026 Paulo Zefi. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "contact": "Contact Us",
+    "social": "Follow us"
+  },
+  "validation": {
+    "required": "This field is required",
+    "email_invalid": "Please enter a valid email",
+    "password_min": "Password must be at least 8 characters",
+    "password_match": "Passwords do not match"
+  }
+}

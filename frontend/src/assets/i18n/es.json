@@ -1,0 +1,127 @@
+{
+  "common": {
+    "login": "Iniciar sesión",
+    "logout": "Cerrar sesión",
+    "dashboard": "Panel de control",
+    "username": "Nombre de usuario",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "submit": "Enviar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "save": "Guardar",
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "warning": "Advertencia",
+    "info": "Información",
+    "close": "Cerrar",
+    "search": "Buscar",
+    "welcome": "Bienvenido",
+    "language": "Idioma"
+  },
+  "header": {
+    "biografia": "Biografía",
+    "lezha": "Lezha",
+    "galleria": "Galería",
+    "pubblicazioni": "Publicaciones",
+    "video": "Vídeo",
+    "contatti": "Contactos",
+    "admin": "Admin",
+    "theme": "Tema"
+  },
+  "login": {
+    "title": "Inicio de Sesión Admin",
+    "description": "Ingrese sus credenciales para acceder al panel de administración",
+    "email_placeholder": "admin@admin.com",
+    "password_placeholder": "Ingrese su contraseña",
+    "login_button": "Iniciar sesión",
+    "logging_in": "Iniciando sesión...",
+    "forgot_password": "¿Olvidó su contraseña?",
+    "no_account": "¿No tiene cuenta?",
+    "error_invalid": "Correo electrónico o contraseña no válido",
+    "error_network": "Error de red. Por favor, inténtelo de nuevo.",
+    "error_server": "Error del servidor. Por favor, inténtelo más tarde."
+  },
+  "home": {
+    "title": "Bienvenido a Paulo Zefi",
+    "subtitle": "Descubre el mundo de Paulo Zefi",
+    "about": "Acerca de",
+    "learn_more": "Aprende más"
+  },
+  "admin": {
+    "title": "Panel de Control Admin",
+    "users": "Usuarios",
+    "settings": "Configuración",
+    "logout_button": "Cerrar sesión",
+    "profile": "Perfil",
+    "back_home": "Volver a inicio"
+  },
+  "sections": {
+    "biografia": {
+      "title": "Biografía",
+      "description": "Descubre el viaje de Paulo Zefi",
+      "subtitle": "Cuarenta años de investigación, pasión y dedicación a la memoria",
+      "role": "Historiador, Investigador, Guardián del Patrimonio Albanés",
+      "intro": "Con más de cuarenta años dedicados a la investigación histórica, Pualin Zefi se ha convertido en una figura de referencia en el estudio de la historia medieval albanesa y, en particular, de la ciudad de Lezha. Su dedicación ha permitido arrojar luz sobre períodos oscuros de la historia albanesa.",
+      "archives": "A través de archivos europeos, manuscritos inéditos y testimonios orales, ha reconstruido la complejidad de los eventos que marcaron el Imperio Otomano y la resistencia albanesa.",
+      "mission": "Su misión es simple pero profunda: preservar la memoria de Lezha y transmitirla a las generaciones futuras, para que no olviden los sacrificios y la gloria de quienes defendieron esta tierra.",
+      "years_research": "Años de Investigación",
+      "publications": "Publicaciones",
+      "conferences": "Conferencias"
+    },
+    "lezha": {
+      "title": "Lezha",
+      "description": "Explora la historia y cultura de Lezha",
+      "subtitle": "Tres mil años de historia, dos siglos de gloria, un destino glorioso",
+      "quote": "Lezha no es solo una ciudad, es el corazón de la resistencia albanesa contra la opresión otomana.",
+      "quote_author": "— Pualin Zefi"
+    },
+    "galleria": {
+      "title": "Galería",
+      "description": "Explora nuestra galería de fotos"
+    },
+    "pubblicazioni": {
+      "title": "Publicaciones",
+      "description": "Lee las publicaciones de Paulo Zefi"
+    },
+    "video": {
+      "title": "Vídeos",
+      "description": "Mira nuestra colección de vídeos"
+    },
+    "hero": {
+      "subtitle": "Historiador de Lezha · Investigador · Guardián de la Memoria Albanesa",
+      "discover_story": "Descubre la historia",
+      "publications": "Publicaciones",
+      "contacts": "Contactos",
+      "scroll": "Desplázate"
+    },
+    "contatti": {
+      "title": "Contactos",
+      "description": "Ponte en contacto con nosotros",
+      "email": "Correo electrónico",
+      "phone": "Teléfono",
+      "address": "Dirección",
+      "send_message": "Enviar Mensaje",
+      "form_name": "Nombre",
+      "form_email": "Correo electrónico",
+      "form_message": "Mensaje",
+      "message_sent": "¡Mensaje enviado con éxito!",
+      "message_error": "Error al enviar el mensaje. Por favor, inténtelo de nuevo."
+    }
+  },
+  "footer": {
+    "copyright": "© 2026 Paulo Zefi. Todos los derechos reservados.",
+    "privacy": "Política de Privacidad",
+    "terms": "Términos de Servicio",
+    "contact": "Contáctenos",
+    "social": "Síguenos"
+  },
+  "validation": {
+    "required": "Este campo es obligatorio",
+    "email_invalid": "Por favor, introduce un correo electrónico válido",
+    "password_min": "La contraseña debe tener al menos 8 caracteres",
+    "password_match": "Las contraseñas no coinciden"
+  }
+}

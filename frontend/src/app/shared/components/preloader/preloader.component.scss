@@ -1,0 +1,86 @@
+.preloader {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, #1c1815 0%, #0a0908 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  animation: fadeOut 0.8s ease-out 2.5s forwards;
+  pointer-events: none;
+
+  &.hidden {
+    animation: fadeOut 0.8s ease-out forwards;
+  }
+}
+
+.preloader-content {
+  text-align: center;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.preloader-crest {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 30px;
+  filter: drop-shadow(0 0 30px rgba(184, 134, 11, 0.4));
+}
+
+.preloader-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.5rem;
+  letter-spacing: 4px;
+  color: #d4a93a;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.preloader-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  color: #c9bfa8;
+  margin-bottom: 30px;
+  font-style: italic;
+}
+
+.progress-bar {
+  width: 160px;
+  height: 3px;
+  background: rgba(184, 134, 11, 0.2);
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #d4a93a, #b8860b);
+  width: 0%;
+  animation: progress 2.5s ease-in-out forwards;
+  box-shadow: 0 0 15px rgba(184, 134, 11, 0.6);
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes progress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
