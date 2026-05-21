@@ -1,37 +1,22 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { MongooseModule } from '@nestjs/mongoose';
-import { AuthModule } from '@/auth/auth.module';
-import { UsersModule } from '@/users/users.module';
-import { SeederModule } from '@/common/seeder/seeder.module';
-import { ContactModule } from '@/contacts/contact.module';
-import { PublicationsModule } from '@/publications/publications.module';
-import { GalleryModule } from '@/gallery/gallery.module';
-import { ContentModule } from '@/content/content.module';
-import databaseConfig from '@/config/database.config';
-import jwtConfig from '@/config/jwt.config';
+import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
+import { ArticlesModule } from './articles/articles.module';
+import { PrismaModule } from './prisma/prisma.module';
+import { BooksModule } from './books/books.module';
+import { VideosModule } from './videos/videos.module';
+import { CategoriesModule } from './categories/categories.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-      envFilePath: '.env',
-      load: [databaseConfig, jwtConfig],
-    }),
-    MongooseModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: async (configService: ConfigService) => ({
-        uri: configService.get('database.uri'),
-      }),
-    }),
+    ConfigModule.forRoot({ isGlobal: true }),
+    PrismaModule,
     AuthModule,
-    UsersModule,
-    SeederModule,
-    ContactModule,
-    PublicationsModule,
-    GalleryModule,
-    ContentModule,
+    ArticlesModule,
+    BooksModule,
+    VideosModule,
+    CategoriesModule,
   ],
 })
 export class AppModule {}
+

@@ -1,67 +1,32 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { PrismaService } from '../prisma/prisma.service';
+import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
-import { UsersService } from '@/users/users.service';
-import { LoginDto } from './dto/login.dto';
 
 @Injectable()
 export class AuthService {
-  constructor(
-    private usersService: UsersService,
-    private jwtService: JwtService,
-  ) {}
+  constructor(private prisma: PrismaService, private jwt: JwtService) {}
 
-  async validateUser(email: string, password: string): Promise<any> {
-    const user = await this.usersService.findByEmail(email);
-
-    if (!user) {
-      return null;
-    }
-
-    const isPasswordValid = await this.usersService.validatePassword(
-      password,
-      user.password,
-    );
-
-    if (!isPasswordValid) {
-      return null;
-    }
-
-    return {
-      id: user._id,
-      email: user.email,
-      role: user.role,
-    };
+  async validateUser(email: string, password: string) {
+    const user = await this.prisma.user.findUnique({ where: { email } });
+    if (!user) return null;
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) return null;
+    const { password: _p, ...rest } = user as any;
+    return rest;
   }
 
-  async login(loginDto: LoginDto) {
-    const user = await this.validateUser(loginDto.email, loginDto.password);
-
-    if (!user) {
-      throw new UnauthorizedException('Invalid credentials');
-    }
-
-    const payload = {
-      email: user.email,
-      sub: user.id,
-      role: user.role,
-    };
-
-    return {
-      access_token: this.jwtService.sign(payload),
-      user: {
-        id: user.id,
-        email: user.email,
-        role: user.role,
-      },
-    };
+  signPayload(payload: any) {
+    return this.jwt.sign(payload);
   }
 
-  async validateToken(token: string) {
-    try {
-      const payload = this.jwtService.verify(token);
-      return payload;
-    } catch (error) {
-      throw new UnauthorizedException('Invalid token');
-    }
+  async login(email: string, password: string) {
+    const user = await this.prisma.user.findUnique({ where: { email } });
+    if (!user) throw new UnauthorizedException('Invalid credentials');
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) throw new UnauthorizedException('Invalid credentials');
+    const token = this.signPayload({ sub: user.id, role: user.role });
+    return { access_token: token, user: { id: user.id, email: user.email, role: user.role } };
   }
 }
+

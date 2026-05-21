@@ -7,6 +7,7 @@ import { AppComponent } from './app/app.component';
 import { routes } from './app/app.routes';
 import { JwtInterceptor } from './app/core/services/api.service';
 import { Observable } from 'rxjs';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 class CustomTranslateLoader implements TranslateLoader {
   constructor(private http: HttpClient) {}
@@ -19,6 +20,7 @@ class CustomTranslateLoader implements TranslateLoader {
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),
+    provideAnimations(),
     provideHttpClient(),
     {
       provide: HTTP_INTERCEPTORS,

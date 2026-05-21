@@ -1,31 +1,21 @@
-import {
-  Controller,
-  Post,
-  Get,
-  Body,
-  UseGuards,
-  Request,
-} from '@nestjs/common';
+import { Body, Controller, Post, Get, UseGuards, Request } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { LoginDto } from './dto/login.dto';
-import { JwtGuard } from './guards/jwt.guard';
+import { JwtAuthGuard } from '../common/guards/jwt-auth.guard';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private authService: AuthService) {}
+  constructor(private auth: AuthService) {}
 
   @Post('login')
-  async login(@Body() loginDto: LoginDto) {
-    return this.authService.login(loginDto);
+  async login(@Body() body: { email: string; password: string }) {
+    return this.auth.login(body.email, body.password);
   }
 
   @Get('profile')
-  @UseGuards(JwtGuard)
-  async getProfile(@Request() req) {
-    return {
-      id: req.user.id,
-      email: req.user.email,
-      role: req.user.role,
-    };
+  @UseGuards(JwtAuthGuard)
+  async profile(@Request() req) {
+    // JwtStrategy returns { userId, role }
+    return { id: req.user?.userId || null, role: req.user?.role || null };
   }
 }
+

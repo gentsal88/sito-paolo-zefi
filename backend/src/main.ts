@@ -1,23 +1,15 @@
+import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { AllExceptionsFilter } from '@/common/filters/all-exceptions.filter';
-import { DatabaseSeederService } from '@/common/seeder/database.seeder';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
 
-  // Global exception filter
-  app.useGlobalFilters(new AllExceptionsFilter());
+  // Enable CORS for frontend app (adjust origin in .env if necessary)
+  app.enableCors({ origin: process.env.CORS_ORIGIN || 'http://localhost:4200', credentials: true });
 
-  // Enable CORS
-  app.enableCors({
-    origin: process.env.CORS_ORIGIN || 'http://localhost:4200',
-    credentials: true,
-  });
-
-  // Run seeder
-  const seeder = app.get(DatabaseSeederService);
-  await seeder.seed();
+  // Swagger is optional; install `@nestjs/swagger` and re-add swagger setup if needed.
 
   const port = process.env.PORT || 3000;
   await app.listen(port);
@@ -25,3 +17,4 @@ async function bootstrap() {
 }
 
 bootstrap();
+

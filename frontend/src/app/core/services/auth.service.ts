@@ -100,6 +100,7 @@ export class AuthService {
 
   hasRole(role: string): boolean {
     const u = this.getUser();
-    return !!(u && u.role === role);
+    if (!u || !u.role) return false;
+    return String(u.role).toLowerCase() === String(role).toLowerCase();
   }
 }
